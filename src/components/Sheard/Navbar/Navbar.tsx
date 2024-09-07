@@ -6,14 +6,16 @@ import { IoSunny } from "react-icons/io5";
 import { HiMenuAlt3, HiMenuAlt1 } from "react-icons/hi";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../redux/store";
-import { toggleMenu, setTheme } from "../../../redux/slices/navbarSlice";
+import { toggleMenu } from "../../../redux/slices/navbarSlice";
+import { toggleTheme } from "../../../redux/slices/themeSlice";
 
 const Navbar = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { isMenuOpen, theme } = useSelector((state: RootState) => state.navbar);
+  const { isMenuOpen} = useSelector((state: RootState) => state.navbar);
+  const theme = useSelector((state: RootState) => state.theme.theme);
 
   const handleThemeToggle = () => {
-    dispatch(setTheme(theme === "dark" ? "light" : "dark"));
+    dispatch(toggleTheme());
   };
 
   const handleMenuToggle = () => {
@@ -40,7 +42,7 @@ const Navbar = () => {
               className={`transition-colors duration-100 
           ${
             theme === "light"
-              ? "hover:text-orange-500"
+              ? "hover:text-yellow-500"
               : "hover:text-yellow-400"
           }`}
             >
@@ -50,7 +52,7 @@ const Navbar = () => {
               to="/about"
               className={`transition-colors duration-100 ${
                 theme === "light"
-                  ? "hover:text-orange-500"
+                  ? "hover:text-yellow-500"
                   : "hover:text-yellow-400"
               }`}
             >
@@ -60,7 +62,7 @@ const Navbar = () => {
               to="/booking"
               className={`transition-colors duration-100 ${
                 theme === "light"
-                  ? "hover:text-orange-500"
+                  ? "hover:text-yellow-500"
                   : "hover:text-yellow-400"
               }`}
             >
@@ -70,7 +72,7 @@ const Navbar = () => {
               to="/contact"
               className={`transition-colors duration-100 ${
                 theme === "light"
-                  ? "hover:text-orange-500"
+                  ? "hover:text-yellow-500"
                   : "hover:text-yellow-400"
               }`}
             >
@@ -121,7 +123,7 @@ const Navbar = () => {
               <Link
                 to="/"
                 className={`transition-colors duration-100 ${
-                  theme === "light" ? "hover:text-orange-500" : "hover:text-yellow-400"
+                  theme === "light" ? "hover:text-yellow-500" : "hover:text-yellow-400"
                 }`}
               >
                 Home
@@ -131,7 +133,7 @@ const Navbar = () => {
               <Link
                 to="/about"
                 className={`transition-colors duration-100 ${
-                  theme === "light" ? "hover:text-orange-500" : "hover:text-yellow-400"
+                  theme === "light" ? "hover:text-yellow-500" : "hover:text-yellow-400"
                 }`}
               >
                 About Us
@@ -141,7 +143,7 @@ const Navbar = () => {
               <Link
                 to="/booking"
                 className={`transition-colors duration-100 ${
-                  theme === "light" ? "hover:text-orange-500" : "hover:text-yellow-400"
+                  theme === "light" ? "hover:text-yellow-500" : "hover:text-yellow-400"
                 }`}
               >
                 Booking
@@ -151,7 +153,7 @@ const Navbar = () => {
               <Link
                 to="/contact"
                 className={`transition-colors duration-100 ${
-                  theme === "light" ? "hover:text-orange-500" : "hover:text-yellow-400"
+                  theme === "light" ? "hover:text-yellow-500" : "hover:text-yellow-400"
                 }`}
               >
                 Contact
