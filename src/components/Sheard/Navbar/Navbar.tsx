@@ -23,7 +23,7 @@ const Navbar = () => {
   };
   return (
     <header
-      className={` fixed top-0 left-0 w-full p-4 flex justify-between items-center  shadow-xl ${
+      className={`fixed top-0 left-0 w-full p-4 flex justify-between items-center  shadow-xl ${
         theme === "dark" ? "bg-gray-900 text-white" : "bg-white text-black"
       }`}
     >

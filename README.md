@@ -43,6 +43,7 @@ Detailed description of the project, including its purpose and goals.
 - npm i --save-dev @types/aos
 - npm install react-redux
 - npm install @reduxjs/toolkit
+- npm i react-fast-marquee
 
 ### Installation Steps
 

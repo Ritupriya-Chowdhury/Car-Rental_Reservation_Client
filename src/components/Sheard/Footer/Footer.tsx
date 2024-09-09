@@ -14,15 +14,15 @@ const Footer = () => {
 
   return (
     <footer
-      className={`px-8  pt-96 ${
+      className={`px-8  ${
         theme === "dark" ? "bg-gray-700 text-white" : "bg-gray-300 text-black"
       }`}
     >
-    <div className={`border-b-2 pb-12 ${
+    <div className={`border-b-2 pb-12 py-20 ${
         theme==='dark'?"border-white":"border-black"
     }`}>
     <div
-        className={`grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-3 
+        className={`grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-3
         border border-black w-11/12 mx-auto rounded-md shadow-md 
         ${
           theme == "dark" ? "bg-gray-400 text-black" : "bg-gray-600 text-white"
@@ -88,7 +88,7 @@ const Footer = () => {
       </div>
       <div
         className=" mx-auto mt-20  grid lg:grid-cols-3 grid-cols-1
-       items-center space-y-6 lg:space-y-0"
+       items-center space-y-12 lg:space-y-0"
       >
         {/* Social Media Links */}
         <div>
@@ -133,7 +133,7 @@ const Footer = () => {
         </div>
 
         {/* Footer Links */}
-        <div className="mx-auto space-y-4 ">
+        <div className="lg:mx-auto mx-4 space-y-4 ">
           <p className="text-2xl font-bold">Important Links</p>
           <div className=" text-lg text-left font-semibold">
             <ul className="space-y-4 text-xl font-semibold pl-4">
@@ -200,7 +200,7 @@ const Footer = () => {
             <input type="email" placeholder="Enter Your Email" className={`p-4 rounded-lg border-2 
             ${theme==='dark'?"bg-gray-700 text-white border-yellow-500 ":
             "bg-gray-300 text-black border-yellow-600 "}`} />
-            <button className={`border-2 ml-2 px-2 py-3  text-lg font-bold rounded-lg
+            <button className={`border-2 ml-2 px-2 py-3 lg:mt-2 md:mt-0 mt-3  text-lg font-bold rounded-lg
             ${theme==='dark'?"border-yellow-500 hover:bg-yellow-600 "
             :"border-yellow-600 hover:bg-yellow-500 "}`}>Subscribe</button>
           </div>

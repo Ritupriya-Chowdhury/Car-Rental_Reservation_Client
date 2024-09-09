@@ -1,7 +1,7 @@
 // src/routes/router.tsx
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
-import Home from "../pages/Home/Home";
+import Home from "../components/Home/Home";
 import AboutUs from "../pages/About/AboutUs";
 import Booking from "../pages/Booking/Booking";
 import Contact from "../pages/Contact/Contact";
@@ -13,7 +13,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Home />,
+        element: <Home/>,
       },
       {
         path: 'about',

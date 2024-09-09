@@ -1,10 +1,11 @@
+import HeroSection from "../../pages/Home/HeroSection";
 
 
 const Home = () => {
   return (
     <div>
      
-      <h1 className="text-xl text-red-500 font-bold">This is Home page</h1>
+      <HeroSection/>
     </div>
   );
 };
