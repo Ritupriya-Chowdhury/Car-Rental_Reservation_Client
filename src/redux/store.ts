@@ -1,13 +1,22 @@
 import { configureStore } from "@reduxjs/toolkit";
 import  navbarReducer from './slices/navbarSlice';
 import themeReducer from './slices/themeSlice'
+import featuredCarsSliceReducer from "./slices/featuredCarsSlice";
+
+
 
 export const store = configureStore({
     reducer: {
       navbar :  navbarReducer,
-      theme: themeReducer
-    },
+      theme: themeReducer,
+      featuredCars: featuredCarsSliceReducer,
+      
+    }
+    
 })
+   
+
+
 
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

@@ -3,12 +3,15 @@ import Navbar from "../Sheard/Navbar/Navbar"
 import Footer from "../Sheard/Footer/Footer"
 
 
+
+
 const MainLayout = () => {
   return (
     <div>
-      <Navbar/>
+     <Navbar/>
       <Outlet/>
       <Footer/>
+      
     </div>
   )
 }

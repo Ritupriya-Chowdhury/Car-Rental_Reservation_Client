@@ -106,8 +106,10 @@ const Footer = () => {
           </div>
           <div className="flex space-x-6">
             <p
-              className=" transition-colors duration-200 
-              border-2 border-yellow-500 p-2 rounded-full hover:bg-yellow-500"
+              className={` transition-colors duration-100 
+              border-2  p-2 rounded-full 
+              ${theme==='dark'?'border-yellow-500 hover:bg-yellow-500 '
+              :'border-yellow-500 bg-yellow-500 hover:bg-white'}`}
             >
               <FaFacebookF size={24} />
             </p>
@@ -115,8 +117,10 @@ const Footer = () => {
               href="https://twitter.com"
               target="_blank"
               rel="noopener noreferrer"
-              className=" transition-colors duration-200
-               border-2 border-yellow-500 p-2 rounded-full hover:bg-yellow-500"
+              className={` transition-colors duration-100 
+              border-2  p-2 rounded-full 
+              ${theme==='dark'?'border-yellow-500 hover:bg-yellow-500 '
+              :'border-yellow-500 bg-yellow-500 hover:bg-white'}`}
             >
               <FaLinkedin size={24} />
             </a>
@@ -124,8 +128,10 @@ const Footer = () => {
               href="https://instagram.com"
               target="_blank"
               rel="noopener noreferrer"
-              className=" transition-colors duration-200 *
-               border-2 border-yellow-500 p-2 rounded-full hover:bg-yellow-500"
+              className={` transition-colors duration-100 
+              border-2  p-2 rounded-full 
+              ${theme==='dark'?'border-yellow-500 hover:bg-yellow-500 '
+              :'border-yellow-500 bg-yellow-500 hover:bg-white'}`}
             >
               <FaInstagram size={24} />
             </a>
@@ -140,9 +146,9 @@ const Footer = () => {
               <li>
                 <Link
                   to="/"
-                  className={` transition-colors duration-300 ${
+                  className={` transition-colors duration-300 p-1 rounded-lg ${
                     theme === "light"
-                      ? "hover:text-yellow-500"
+                      ? "hover:border-yellow-500 hover:bg-yellow-500 "
                       : "hover:text-yellow-400"
                   }`}
                 >
@@ -152,9 +158,9 @@ const Footer = () => {
               <li>
                 <Link
                   to="/about"
-                  className={` transition-colors duration-300 ${
+                  className={` transition-colors duration-300 p-1 rounded-lg ${
                     theme === "light"
-                      ? "hover:text-yellow-500"
+                      ? "hover:border-yellow-500 hover:bg-yellow-500 "
                       : "hover:text-yellow-400"
                   }`}
                 >
@@ -164,9 +170,9 @@ const Footer = () => {
               <li>
                 <Link
                   to="/booking"
-                  className={` transition-colors duration-300 ${
+                  className={` transition-colors duration-300 p-1 rounded-lg ${
                     theme === "light"
-                      ? "hover:text-yellow-500"
+                      ? "hover:border-yellow-500 hover:bg-yellow-500 "
                       : "hover:text-yellow-400"
                   }`}
                 >
@@ -176,9 +182,9 @@ const Footer = () => {
               <li className="">
                 <Link
                   to="/contact"
-                  className={` transition-colors duration-300 ${
+                  className={` transition-colors duration-300 p-1 rounded-lg ${
                     theme === "light"
-                      ? "hover:text-yellow-500"
+                      ? "hover:border-yellow-500 hover:bg-yellow-500 "
                       : "hover:text-yellow-400"
                   }`}
                 >
@@ -197,12 +203,12 @@ const Footer = () => {
             and we'll keep you informed via email.
           </p>
           <div className="mt-4">
-            <input type="email" placeholder="Enter Your Email" className={`p-4 rounded-lg border-2 
+            <input type="email" placeholder="Enter Your Email" className={`p-4 rounded-lg border-2 transition duration-300 
             ${theme==='dark'?"bg-gray-700 text-white border-yellow-500 ":
-            "bg-gray-300 text-black border-yellow-600 "}`} />
+            " text-black border-yellow-500 hover:bg-white "}`} />
             <button className={`border-2 ml-2 px-2 py-3 lg:mt-2 md:mt-0 mt-3  text-lg font-bold rounded-lg
-            ${theme==='dark'?"border-yellow-500 hover:bg-yellow-600 "
-            :"border-yellow-600 hover:bg-yellow-500 "}`}>Subscribe</button>
+            ${theme==='dark'?"border-yellow-500 hover:bg-yellow-500 hover:text-black "
+            :"border-yellow-500 bg-yellow-500 hover:bg-white  "}`}>Subscribe</button>
           </div>
         </div>
       </div>
