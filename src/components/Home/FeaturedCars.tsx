@@ -7,9 +7,10 @@ import { AppDispatch, RootState } from '../../redux/store';
 import { fetchFeaturedCars } from '../../redux/slices/featuredCarsSlice';
 
 
+
 const FeaturedCars = () => {
   const theme = useSelector((state: RootState) => state.theme.theme);
-  const dispatch: AppDispatch = useDispatch();
+  const dispatch: AppDispatch= useDispatch();
   const { cars, loading, error } = useSelector((state: RootState) => 
     state.featuredCars);
   console.log(cars)

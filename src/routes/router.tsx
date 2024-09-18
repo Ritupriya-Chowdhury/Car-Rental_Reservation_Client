@@ -1,33 +1,37 @@
 // src/routes/router.tsx
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
-import Home from "../components/Home/Home";
-import AboutUs from "../pages/About/AboutUs";
-import Booking from "../pages/Booking/Booking";
-import Contact from "../pages/Contact/Contact";
+import Login from "../pages/Login/Login";
+import Register from "../pages/Register/Register";
+import { adminPaths } from "./adminPaths";
+import { userPaths } from "./userPaths";
+import { publicPaths } from "./publicPaths";
+import { routeGenerator } from "../utils/routeGeneator";
+
 
 const router = createBrowserRouter([
   {
-    path: '/',
-    element: <App />, // App layout contains the Navbar and Outlet for child routes
-    children: [
-      {
-        path: '/',
-        element: <Home/>,
-      },
-      {
-        path: 'about',
-        element: <AboutUs />,
-      },
-      {
-        path: 'booking',
-        element: <Booking />,
-      },
-      {
-        path: 'contact',
-        element: <Contact />,
-      },
-    ],
+    path: "/",
+    element: <App />,
+    children: publicPaths,
+  },
+  {
+    path: "/signin",
+    element: <Login />,
+  },
+  {
+    path: "/signup",
+    element: <Register />,
+  },
+  {
+    path: "/admin",
+    element: <App />,
+    children:  routeGenerator(adminPaths),
+  },
+  {
+    path: "/user",
+    element: <App />,
+    children: routeGenerator(userPaths),
   },
 ]);
 

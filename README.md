@@ -22,7 +22,7 @@ Detailed description of the project, including its purpose and goals.
 
 ## Technology Uses
 
-- React-Vite, Typescript, react-router-dom, react-hook-form, tailwind, react-helmet-async, react-icons, aos, react-redux, redux toolkit , react swiper, redux-persist
+- React-Vite, Typescript, react-router-dom, react-hook-form, tailwind, react-helmet-async, react-icons, aos, react-redux, redux toolkit , react swiper, redux-persist, sonner
 
 ## Installation Guideline For TeaStall-Client (Frontend)
 - npm create vite
@@ -46,6 +46,7 @@ Detailed description of the project, including its purpose and goals.
 - npm i swiper
 - npm i redux-persist
 - npm i @types/aos
+- npm i sonner
 
 ### Installation Steps
 
