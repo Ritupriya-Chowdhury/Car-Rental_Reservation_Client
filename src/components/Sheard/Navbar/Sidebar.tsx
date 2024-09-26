@@ -34,7 +34,7 @@ const Sidebar = () => {
       <ul className="space-y-4 text-xl font-semibold">
         {sidebarItems.map((item: TNavbarItem) => (
           <li key={item.key} className={`transition-colors duration-100 ${
-            theme === "light" ? "hover:text-yellow-500" : "hover:text-yellow-400"
+            theme === "light" ? "hover:text-2xl" : "hover:text-2xl hover:text-yellow-400"
           }`}>
             <Link to={item.path ?? '#'} className="block">
               {item.label}

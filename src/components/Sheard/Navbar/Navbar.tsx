@@ -45,14 +45,14 @@ const Navbar = () => {
       </div>
       <div className=" space-x-6 items-center hidden lg:block">
         <div className="flex">
-          <nav className="space-x-6 text-lg font-semibold">
+          <nav className="space-x-6 text-xl font-semibold">
             <Link
               to="/"
               className={`transition-colors duration-100 
           ${
             theme === "light"
-              ? "hover:text-yellow-500"
-              : "hover:text-yellow-400"
+              ? "hover:text-2xl"
+              : "hover:text-2xl  hover:text-yellow-400"
           }`}
             >
               Home
@@ -61,8 +61,8 @@ const Navbar = () => {
               to="/about"
               className={`transition-colors duration-100 ${
                 theme === "light"
-                  ? "hover:text-yellow-500"
-                  : "hover:text-yellow-400"
+                  ? "hover:text-2xl"
+                  : "hover:text-2xl  hover:text-yellow-400"
               }`}
             >
               About Us
@@ -71,8 +71,8 @@ const Navbar = () => {
               to="/booking"
               className={`transition-colors duration-100 ${
                 theme === "light"
-                  ? "hover:text-yellow-500"
-                  : "hover:text-yellow-400"
+                  ? "hover:text-2xl"
+                  : "hover:text-2xl  hover:text-yellow-400"
               }`}
             >
               Booking
@@ -81,18 +81,18 @@ const Navbar = () => {
               to="/contact"
               className={`transition-colors duration-100 ${
                 theme === "light"
-                  ? "hover:text-yellow-500"
-                  : "hover:text-yellow-400"
+                  ? "hover:text-2xl"
+                  : "hover:text-2xl  hover:text-yellow-400"
               }`}
             >
               Contact
             </Link>
           </nav>
-          <div className="hidden lg:block ml-6">
+          <div className={`hidden lg:block ml-6 ${theme==='dark'?' hover:text-yellow-400 hover:text-2xl':'hover:text-2xl'}`}>
             {isMenuOpen ? (
               <HiMenuAlt1
                 onClick={handleMenuToggle}
-                className=" cursor-pointer transition-all"
+                className=" cursor-pointer transition-all  "
                 size={30}
               />
             ) : (
@@ -104,7 +104,8 @@ const Navbar = () => {
             )}
           </div>
           <div
-            className="text-lg px-6 pt-1 cursor-pointer"
+            className={`text-xl px-6 pt-1 cursor-pointer hover:text-2xl 
+            ${theme==='dark'?'hover:text-yellow-400':''}`}
             onClick={handleThemeToggle}
           >
             {theme === "dark" ? <IoSunny /> : <FaMoon />}
@@ -162,11 +163,11 @@ const Navbar = () => {
       {/* Responsive Menu */}
       <div
         className={`${
-          isMenuOpen ? "left-0" : "-left-full"
-        } fixed top-0 bottom-0 z-20 w-1/2 lg:hidden 
+          isMenuOpen ? "left-0" : "-left-full" 
+        } fixed top-0 bottom-0 z-20 md:w-1/3 w-1/2 lg:hidden 
          ${theme === "dark" ? "bg-gray-800 text-white" : "bg-white text-black"}
-         px-8 pb-6 pt-16 
-         transition-transform duration-200 ease-in-out rounded-r-xl shadow-xl`}
+         px-8 pb-6 mt-28
+         transition-transform duration-500 ease-in-out  shadow-xl`}
       >
         <nav className="mt-8">
           <ul className="space-y-4 text-xl font-semibold">
@@ -175,8 +176,8 @@ const Navbar = () => {
                 to="/"
                 className={`transition-colors duration-100 ${
                   theme === "light"
-                    ? "hover:text-yellow-500"
-                    : "hover:text-yellow-400"
+                    ? "hover:text-2xl"
+                    : "hover:text-2xl  hover:text-yellow-400"
                 }`}
               >
                 Home
@@ -187,8 +188,8 @@ const Navbar = () => {
                 to="/about"
                 className={`transition-colors duration-100 ${
                   theme === "light"
-                    ? "hover:text-yellow-500"
-                    : "hover:text-yellow-400"
+                    ? "hover:text-2xl"
+                    : "hover:text-2xl  hover:text-yellow-400"
                 }`}
               >
                 About Us
@@ -199,8 +200,8 @@ const Navbar = () => {
                 to="/booking"
                 className={`transition-colors duration-100 ${
                   theme === "light"
-                    ? "hover:text-yellow-500"
-                    : "hover:text-yellow-400"
+                    ? "hover:text-2xl"
+                    : "hover:text-2xl  hover:text-yellow-400"
                 }`}
               >
                 Booking
@@ -211,8 +212,8 @@ const Navbar = () => {
                 to="/contact"
                 className={`transition-colors duration-100 ${
                   theme === "light"
-                    ? "hover:text-yellow-500"
-                    : "hover:text-yellow-400"
+                    ? "hover:text-2xl"
+                    : "hover:text-2xl  hover:text-yellow-400"
                 }`}
               >
                 Contact
@@ -222,7 +223,8 @@ const Navbar = () => {
           <Sidebar />
         </nav>
         <div
-          className="text-lg px-6 mt-4 cursor-pointer"
+          className={`text-xl px-6 pt-1 cursor-pointer hover:text-2xl mt-2 
+          ${theme==='dark'?'hover:text-yellow-400':''}`}
           onClick={handleThemeToggle}
         >
           {theme === "dark" ? <IoSunny /> : <FaMoon />}
