@@ -1,5 +1,5 @@
 import AboutUs from "../pages/About/AboutUs";
-import Booking from "../pages/Booking/Booking";
+import CarList from "../pages/Car/Cars";
 import Contact from "../pages/Contact/Contact";
 import Home from "../pages/Home/Home";
 
@@ -9,12 +9,16 @@ export const publicPaths=[
       element: <Home />,
     },
     {
-      path: "about",
-      element: <AboutUs />,
+      path: "cars",
+      element: <CarList/>,
     },
     {
-      path: "booking",
-      element: <Booking />,
+      path: "cars/:id",
+      element: <div></div>,
+    },
+    {
+      path: "about",
+      element: <AboutUs />,
     },
     {
       path: "contact",

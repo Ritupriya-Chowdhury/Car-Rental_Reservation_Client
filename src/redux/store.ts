@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import  navbarReducer from './slices/navbarSlice';
 import themeReducer from './slices/themeSlice'
 import featuredCarsSliceReducer from "./slices/featuredCarsSlice";
+import carsReducer from './slices/carSlice';
 import authReducer from './slices/authSlice';
 import { baseApi } from "./api/baseApi";
 import { 
@@ -29,6 +30,7 @@ export const store = configureStore({
     reducer: {
       navbar :  navbarReducer,
       theme: themeReducer,
+      cars: carsReducer,
       featuredCars: featuredCarsSliceReducer,
       [baseApi.reducerPath]: baseApi.reducer,
       auth:persistAuthReducer,

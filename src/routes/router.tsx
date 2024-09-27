@@ -7,6 +7,7 @@ import { adminPaths } from "./adminPaths";
 import { userPaths } from "./userPaths";
 import { publicPaths } from "./publicPaths";
 import { routeGenerator } from "../utils/routeGeneator";
+import NotFoundPage from "../pages/Error/NotFound";
 
 
 const router = createBrowserRouter([
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
     path: "/user",
     element: <App />,
     children: routeGenerator(userPaths),
+  },
+  {
+    path: "*",
+    element: <NotFoundPage />,
   },
 ]);
 

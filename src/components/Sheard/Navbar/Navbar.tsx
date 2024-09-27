@@ -58,6 +58,17 @@ const Navbar = () => {
               Home
             </Link>
             <Link
+              to="/cars"
+              className={`transition-colors duration-100 
+          ${
+            theme === "light"
+              ? "hover:text-2xl"
+              : "hover:text-2xl  hover:text-yellow-400"
+          }`}
+            >
+            Cars
+            </Link>
+            <Link
               to="/about"
               className={`transition-colors duration-100 ${
                 theme === "light"
@@ -67,16 +78,7 @@ const Navbar = () => {
             >
               About Us
             </Link>
-            <Link
-              to="/booking"
-              className={`transition-colors duration-100 ${
-                theme === "light"
-                  ? "hover:text-2xl"
-                  : "hover:text-2xl  hover:text-yellow-400"
-              }`}
-            >
-              Booking
-            </Link>
+          
             <Link
               to="/contact"
               className={`transition-colors duration-100 ${
@@ -185,6 +187,18 @@ const Navbar = () => {
             </li>
             <li>
               <Link
+                to="/cars"
+                className={`transition-colors duration-100 ${
+                  theme === "light"
+                    ? "hover:text-2xl"
+                    : "hover:text-2xl  hover:text-yellow-400"
+                }`}
+              >
+              Cars
+              </Link>
+            </li>
+            <li>
+              <Link
                 to="/about"
                 className={`transition-colors duration-100 ${
                   theme === "light"
@@ -195,18 +209,7 @@ const Navbar = () => {
                 About Us
               </Link>
             </li>
-            <li>
-              <Link
-                to="/booking"
-                className={`transition-colors duration-100 ${
-                  theme === "light"
-                    ? "hover:text-2xl"
-                    : "hover:text-2xl  hover:text-yellow-400"
-                }`}
-              >
-                Booking
-              </Link>
-            </li>
+           
             <li>
               <Link
                 to="/contact"
