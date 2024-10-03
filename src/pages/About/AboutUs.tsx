@@ -4,6 +4,7 @@ import { RootState } from "../../redux/store";
 import ritu from "../../assets/About/428682758_1188774892527940_1130028487454134231_n-removebg-preview.png";
 import raj from "../../assets/About/399078044_352224463981852_3738276332233915676_n-removebg-preview.png";
 import amit from "../../assets/About/449789155_392187230503807_2253069901901366205_n-removebg-preview.png";
+import { useRef } from "react";
 
 const teamMembers = [
   { name: "Rituraj Chowdhury", role: "CEO", photo: raj },
@@ -35,7 +36,9 @@ const fleet = [
 ];
 const AboutUs = () => {
   const theme = useAppSelector((state: RootState) => state.theme.theme);
+  const contactSectionRef = useRef<HTMLDivElement | null>(null);
 
+  
   return (
     <div
       className={`bg-gray-100 pt-28 pb-8  ${
@@ -62,18 +65,16 @@ const AboutUs = () => {
 
       <div className="">
         <section
-          className={`py-20 md:px-20 px-8 ${
+          className={`pt-20 pb-12 md:px-20 px-8 ${
             theme === "dark" ? "" : "text-black"
           }`}
         >
           <h2
-            className={`text-3xl font-semibold ${
-              theme === "dark" ? "text-black" : "text-black"
-            }`}
+            className={`text-3xl font-semibold `}
           >
             Our History
           </h2>
-          <p className="mt-8  text-xl">
+          <p className="mt-8  text-2xl text-gray-700 ">
             Founded in 2020, RPCarRes Car Rentals started with the mission of
             providing affordable, reliable, and environmentally conscious car
             rental services. Over the past decade, we’ve expanded our fleet and
@@ -85,7 +86,7 @@ const AboutUs = () => {
         {/* Our Team */}
         <section
           className={`py-12 md:px-20 px-8 ${
-            theme === "dark" ? "bg-gray-200" : "bg-gray-100"
+            theme === "dark" ? "bg-gray-200" : "bg-gray-50"
           } `}
         >
           <h2 className={`text-3xl font-semibold `}>Meet Our Team</h2>
@@ -110,7 +111,7 @@ const AboutUs = () => {
         {/* Our Fleet */}
         <section className="py-12 md:px-20 px-8">
           <h2 className="text-3xl font-semibold">Our Fleet</h2>
-          <p className="mt-4 text-xl text-black">
+          <p className="mt-4 text-2xl text-gray-700">
             We offer a variety of vehicles to suit every need, from economical
             cars for city driving to luxury SUVs for road trips and business
             travel.
@@ -141,7 +142,7 @@ const AboutUs = () => {
         </section>
 
         {/* Values & Commitment */}
-        <section className="py-12 md:px-20 px-8 bg-gray-50">
+        <section className={`py-12 md:px-20 px-8  ${theme==='dark'?'bg-gray-200':'bg-gray-50'}`}>
           <h2 className="text-3xl font-semibold">Our Values & Commitment</h2>
           <p className="mt-4 text-gray-700 text-2xl">
             We are committed to providing exceptional customer service while
@@ -151,26 +152,31 @@ const AboutUs = () => {
         </section>
 
         {/* Contact Information */}
-        <section className="py-12 md:px-20 px-8">
-          <h2 className="text-3xl font-semibold">Contact Us</h2>
-          <p className="mt-4 text-gray-700 text-xl font-semibold">
-            If you have any questions or need assistance, feel free to reach out
-            to us:
-          </p>
-          <ul className="mt-2 text-gray-700 text-xl font-semibold">
-            <li>Phone: (123) 456-7890</li>
-            <li>Email: rpcarres2gmail.com</li>
-            <li>Address: Boalkhali, Chattogram</li>
-          </ul>
-          <div>
-            <p className="text-3xl font-semibold mt-4">Our Location</p>
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d70198.17174078141!2d91.87042707846486!3d22.378652066840548!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30ad25d1b4ee63ed%3A0x57feb012672900bd!2sBoalkhali!5e0!3m2!1sen!2sbd!4v1727488235053!5m2!1sen!2sbd"
-              loading="lazy"
-              className="w-full h-72 mt-2 "
-            ></iframe>
-          </div>
-        </section>
+       <div ref={contactSectionRef}>
+       <section  className="py-12 md:px-20 px-8">
+        <h2 className="text-3xl font-semibold">Contact Us</h2>
+        <p className="mt-4 text-gray-700 text-xl font-semibold">
+          If you have any questions or need assistance, feel free to reach out to us:
+        </p>
+        <ul className="mt-2 text-gray-700 text-xl font-semibold">
+          <li>Phone: (123) 456-7890</li>
+          <li>Email: rpcarres2gmail.com</li>
+          <li>Address: Boalkhali, Chattogram</li>
+        </ul>
+        <div>
+          <p className="text-3xl font-semibold mt-4">Our Location</p>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d70198.17174078141!2d91.87042707846486!3d22.378652066840548!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30ad25d1b4ee63ed%3A0x57feb012672900bd!2sBoalkhali!5e0!3m2!1sen!2sbd!4v1727488235053!5m2!1sen!2sbd"
+            loading="lazy"
+            className="w-full h-72 mt-2"
+            title="Location Map"
+            aria-label="Location map"
+            style={{ border: 0 }}
+            allowFullScreen
+          ></iframe>
+        </div>
+      </section>
+       </div>
       </div>
     </div>
   );

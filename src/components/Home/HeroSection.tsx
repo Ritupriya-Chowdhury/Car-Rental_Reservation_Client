@@ -2,7 +2,7 @@ import car from "../../assets/Images/banner-car.png";
 import car2 from "../../assets/Images/car.png";
 import car3 from "../../assets/Images/car2.png";
 import car4 from "../../assets/Images/car1.png";
-import car5 from "../../assets/Images/car5.png";
+import car5 from "../../assets/Images/car-1879629_1280-removebg-preview (1).png";
 import car6 from "../../assets/Images/photo-1716167949462-951ec2833318-removebg-preview.png";
 import { useAppSelector } from "../../redux/hook";
 import { RootState } from "../../redux/store";
@@ -113,8 +113,8 @@ const HeroSection = () => {
         className="lg:w-7/12 w-10/12 md:h-full h-80 mx-auto  lg:mt-20"
       />
         <div 
-        className={`absolute inset-0 ${theme==='dark'?'lg:mt-56':'lg:mt-56'}  md:mt-20 mt-24 flex justify-center 
-        items-center h-56  md:w-1/2 w-2/3  lg:ml-28 md:ml-4 ml-2 bg-black bg-opacity-50 border-b rounded-lg`}
+        className={`absolute inset-0 ${theme==='dark'?'lg:mt-40 lg:ml-40':'lg:mt-56 lg:ml-28'}  md:mt-20 mt-24 flex justify-center 
+        items-center h-56  md:w-1/2 w-2/3   md:ml-4 ml-2 bg-black bg-opacity-50 border-b rounded-lg`}
       >
         <div className="grid lg:grid-cols-2 grid-cols-1 px-4">
           <div className="">

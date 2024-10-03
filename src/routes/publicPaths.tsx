@@ -1,4 +1,5 @@
 import AboutUs from "../pages/About/AboutUs";
+import CarDetails from "../pages/Car/CarDetails";
 import CarList from "../pages/Car/Cars";
 import Contact from "../pages/Contact/Contact";
 import Home from "../pages/Home/Home";
@@ -14,7 +15,7 @@ export const publicPaths=[
     },
     {
       path: "cars/:id",
-      element: <div></div>,
+      element: <CarDetails/>,
     },
     {
       path: "about",

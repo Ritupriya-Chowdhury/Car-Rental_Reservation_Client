@@ -16,6 +16,7 @@ import {
   REGISTER
  } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import createUserReducer from './slices/authSlice';
 
 
 
@@ -34,6 +35,7 @@ export const store = configureStore({
       featuredCars: featuredCarsSliceReducer,
       [baseApi.reducerPath]: baseApi.reducer,
       auth:persistAuthReducer,
+      createUser: createUserReducer,
       
     },
     middleware: getDefaultMiddlewares=>

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../../assets/Images/CarRentalLogo.png";
 import logo2 from "../../../assets/Images/CarRentalLogo2.png";
 import { FaMoon } from "react-icons/fa";
@@ -9,30 +9,53 @@ import { AppDispatch, RootState } from "../../../redux/store";
 import { toggleMenu } from "../../../redux/slices/navbarSlice";
 import { toggleTheme } from "../../../redux/slices/themeSlice";
 import Sidebar from "./Sidebar";
-import { logout } from "../../../redux/slices/authSlice";
+import { logout as clearUser } from "../../../redux/slices/authSlice";
 
-const Navbar = () => {
+
+const Navbar = ({ scrollToContact }: { scrollToContact: () => void }) => {
   const dispatch: AppDispatch = useDispatch();
   const { isMenuOpen } = useSelector((state: RootState) => state.navbar);
   const theme = useSelector((state: RootState) => state.theme.theme);
+  const user = useSelector((state: RootState) => state.auth.user);
 
+  // Log user data for debugging
+  console.log('User data:', user);
+
+  
+  const navigate = useNavigate();
+
+  // Toggle theme handler
   const handleThemeToggle = () => {
     dispatch(toggleTheme());
   };
 
+  // Toggle menu handler
   const handleMenuToggle = () => {
     dispatch(toggleMenu());
   };
 
-  const handleLogout= () =>{
-     dispatch(logout());
-
+  // Logout handler
+  const handleLogout = async () => {
+    try {
+       // Call the logout mutation
+      dispatch(clearUser()); // Clear the user from the Redux state
+      navigate("/signin"); // Redirect to sign-in after logout
+    } catch (error) {
+      console.error("Failed to log out:", error);
+    }
   };
 
+  // Navigate to contact section
+  const handleContactClick = () => {
+    navigate("/about");
+    setTimeout(() => {
+      scrollToContact();
+    }, 100);
+  };
 
   return (
     <header
-      className={`fixed top-0 left-0 z-10 w-full p-4 flex justify-between items-center  shadow-xl ${
+      className={`fixed top-0 left-0 z-10 w-full p-4 flex justify-between items-center shadow-xl ${
         theme === "dark" ? "bg-gray-900 text-white" : "bg-white text-black"
       }`}
     >
@@ -43,92 +66,103 @@ const Navbar = () => {
           className="w-48 mr-2"
         />
       </div>
-      <div className=" space-x-6 items-center hidden lg:block">
+      <div className="space-x-6 items-center hidden lg:block">
         <div className="flex">
           <nav className="space-x-6 text-xl font-semibold">
             <Link
               to="/"
-              className={`transition-colors duration-100 
-          ${
-            theme === "light"
-              ? "hover:text-2xl"
-              : "hover:text-2xl  hover:text-yellow-400"
-          }`}
+              className={`transition-colors duration-100 ${
+                theme === "light"
+                  ? "hover:text-2xl"
+                  : "hover:text-2xl hover:text-yellow-400"
+              }`}
             >
               Home
             </Link>
             <Link
               to="/cars"
-              className={`transition-colors duration-100 
-          ${
-            theme === "light"
-              ? "hover:text-2xl"
-              : "hover:text-2xl  hover:text-yellow-400"
-          }`}
+              className={`transition-colors duration-100 ${
+                theme === "light"
+                  ? "hover:text-2xl"
+                  : "hover:text-2xl hover:text-yellow-400"
+              }`}
             >
-            Cars
+              Cars
             </Link>
             <Link
               to="/about"
               className={`transition-colors duration-100 ${
                 theme === "light"
                   ? "hover:text-2xl"
-                  : "hover:text-2xl  hover:text-yellow-400"
+                  : "hover:text-2xl hover:text-yellow-400"
               }`}
             >
               About Us
             </Link>
-          
-            <Link
-              to="/contact"
+            <button
+              onClick={handleContactClick}
               className={`transition-colors duration-100 ${
                 theme === "light"
                   ? "hover:text-2xl"
-                  : "hover:text-2xl  hover:text-yellow-400"
+                  : "hover:text-2xl hover:text-yellow-400"
               }`}
             >
               Contact
-            </Link>
+            </button>
           </nav>
-          <div className={`hidden lg:block ml-6 ${theme==='dark'?' hover:text-yellow-400 hover:text-2xl':'hover:text-2xl'}`}>
-            {isMenuOpen ? (
-              <HiMenuAlt1
-                onClick={handleMenuToggle}
-                className=" cursor-pointer transition-all  "
-                size={30}
-              />
-            ) : (
-              <HiMenuAlt3
-                onClick={handleMenuToggle}
-                className="cursor-pointer transition-all"
-                size={30}
-              />
-            )}
-          </div>
+          {user && (
+            <div
+              className={`hidden lg:block ml-6 ${
+                theme === "dark"
+                  ? "hover:text-yellow-400 hover:text-2xl"
+                  : "hover:text-2xl"
+              }`}
+            >
+              {isMenuOpen ? (
+                <HiMenuAlt1
+                  onClick={handleMenuToggle}
+                  className="cursor-pointer transition-all"
+                  size={30}
+                />
+              ) : (
+                <HiMenuAlt3
+                  onClick={handleMenuToggle}
+                  className="cursor-pointer transition-all"
+                  size={30}
+                />
+              )}
+            </div>
+          )}
           <div
-            className={`text-xl px-6 pt-1 cursor-pointer hover:text-2xl 
-            ${theme==='dark'?'hover:text-yellow-400':''}`}
+            className={`text-xl px-6 pt-1 cursor-pointer hover:text-2xl ${
+              theme === "dark" ? "hover:text-yellow-400" : ""
+            }`}
             onClick={handleThemeToggle}
           >
             {theme === "dark" ? <IoSunny /> : <FaMoon />}
           </div>
         </div>
       </div>
-      <div
-        className={`${
-          isMenuOpen ? "left-0" : "-left-full"
-        } fixed top-0 bottom-0 z-20 
+
+      {/* Sidebar for larger screens */}
+      {user && (
+        <div
+          className={`${
+            isMenuOpen ? "left-0" : "-left-full"
+          } fixed top-0 bottom-0 z-20 
          ${theme === "dark" ? "bg-gray-900 text-white" : "bg-white text-black"}
          px-8 pb-6 pt-16 hidden lg:block mt-28
          transition-transform duration-200 ease-in-out rounded-r-md shadow-xl`}
-      >
-        <Sidebar />
-      </div>
+        >
+          <Sidebar />
+        </div>
+      )}
+
       <div className="lg:hidden">
         {isMenuOpen ? (
           <HiMenuAlt1
             onClick={handleMenuToggle}
-            className=" cursor-pointer transition-all"
+            className="cursor-pointer transition-all"
             size={30}
           />
         ) : (
@@ -139,37 +173,45 @@ const Navbar = () => {
           />
         )}
       </div>
+
+      {/* Sign In or Logout Button */}
       <div>
-        <button
-          className={`${
-            theme === "dark"
-              ? "bg-white hover:bg-yellow-400 hover:text-white"
-              : "bg-yellow-400 hover:bg-white"
-          } 
-        border-2 border-yellow-400 text-black px-4 py-2 mr-2 rounded font-bold`}
-        >
-          <Link to="/signin">Sign in</Link>
-        </button>
-        <button onClick={handleLogout}
-          className={`${
-            theme === "dark"
-              ? "bg-white hover:bg-yellow-400 hover:text-white"
-              : "bg-yellow-400 hover:bg-white"
-          } 
-        border-2 border-yellow-400 text-black px-4 py-2 mr-2 rounded font-bold`}
-        >
-          Logout
-        </button>
+        {user ? (
+          <button
+            onClick={handleLogout}
+            className={`${
+              theme === "dark"
+                ? "bg-white hover:bg-yellow-400 hover:text-white"
+                : "bg-yellow-400 hover:bg-white"
+            } 
+            border-2 border-yellow-400 text-black px-4 py-2 mr-2 rounded font-bold`}
+          >
+            Logout
+          </button>
+        ) : (
+          <Link to="/signin">
+            <button
+              className={`${
+                theme === "dark"
+                  ? "bg-white hover:bg-yellow-400 hover:text-white"
+                  : "bg-yellow-400 hover:bg-white"
+              } 
+            border-2 border-yellow-400 text-black px-4 py-2 mr-2 rounded font-bold`}
+            >
+              Sign in
+            </button>
+          </Link>
+        )}
       </div>
 
-      {/* Responsive Menu */}
+      {/* Responsive Sidebar for smaller screens */}
       <div
         className={`${
-          isMenuOpen ? "left-0" : "-left-full" 
+          isMenuOpen ? "left-0" : "-left-full"
         } fixed top-0 bottom-0 z-20 md:w-1/3 w-1/2 lg:hidden 
          ${theme === "dark" ? "bg-gray-800 text-white" : "bg-white text-black"}
          px-8 pb-6 mt-28
-         transition-transform duration-500 ease-in-out  shadow-xl`}
+         transition-transform duration-500 ease-in-out shadow-xl`}
       >
         <nav className="mt-8">
           <ul className="space-y-4 text-xl font-semibold">
@@ -179,7 +221,7 @@ const Navbar = () => {
                 className={`transition-colors duration-100 ${
                   theme === "light"
                     ? "hover:text-2xl"
-                    : "hover:text-2xl  hover:text-yellow-400"
+                    : "hover:text-2xl hover:text-yellow-400"
                 }`}
               >
                 Home
@@ -191,10 +233,10 @@ const Navbar = () => {
                 className={`transition-colors duration-100 ${
                   theme === "light"
                     ? "hover:text-2xl"
-                    : "hover:text-2xl  hover:text-yellow-400"
+                    : "hover:text-2xl hover:text-yellow-400"
                 }`}
               >
-              Cars
+                Cars
               </Link>
             </li>
             <li>
@@ -203,31 +245,31 @@ const Navbar = () => {
                 className={`transition-colors duration-100 ${
                   theme === "light"
                     ? "hover:text-2xl"
-                    : "hover:text-2xl  hover:text-yellow-400"
+                    : "hover:text-2xl hover:text-yellow-400"
                 }`}
               >
                 About Us
               </Link>
             </li>
-           
             <li>
-              <Link
-                to="/contact"
+              <button
+                onClick={handleContactClick}
                 className={`transition-colors duration-100 ${
                   theme === "light"
                     ? "hover:text-2xl"
-                    : "hover:text-2xl  hover:text-yellow-400"
+                    : "hover:text-2xl hover:text-yellow-400"
                 }`}
               >
                 Contact
-              </Link>
+              </button>
             </li>
           </ul>
-          <Sidebar />
+          {user && <Sidebar />}
         </nav>
         <div
-          className={`text-xl px-6 pt-1 cursor-pointer hover:text-2xl mt-2 
-          ${theme==='dark'?'hover:text-yellow-400':''}`}
+          className={`text-xl px-6 pt-1 cursor-pointer hover:text-2xl mt-2 ${
+            theme === "dark" ? "hover:text-yellow-400" : ""
+          }`}
           onClick={handleThemeToggle}
         >
           {theme === "dark" ? <IoSunny /> : <FaMoon />}

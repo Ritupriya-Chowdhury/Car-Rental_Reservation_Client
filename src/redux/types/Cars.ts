@@ -3,22 +3,39 @@ export type Car= {
     name: string;
     image: string;
     description: string;
-    pricePerHour: number;
-    carType: string;
+    color:string;
+    isElectric:boolean;
+    features:string[];
     status: string;
+    location:string;
+    pricePerHour: number;
+    startDate:string;
+    endDate:string;
+    carType: string;
+    customerReviews:string[];
+    
+    
   }
 export type createCar= {
     
-    name: string;
-    image: string;
-    description: string;
-    pricePerHour: number;
-    carType: string;
-    status: string;
+  name: string;
+  image: string;
+  description: string;
+  color:string;
+  isElectric:boolean;
+  features:string[];
+  status: string;
+  location:string;
+  pricePerHour: number;
+  startDate:string;
+  endDate:string;
+  carType: string;
+ 
   }
 
   export type CarState= {
     cars: Car[];
+    carDetails: Car | null;
     loading: boolean;
     error: string | null;
   }
