@@ -36,6 +36,18 @@ Detailed description of the project, including its purpose and goals.
 - npm install
 - npm run dev
 
+### Backend Git Repository
+-  https://github.com/Ritupriya-Chowdhury/car-Car-Rental-Reservation-System.git
+
+### Frontend Git Repository
+-  https://github.com/Ritupriya-Chowdhury/Car-Rental_Reservation_Client.git
+
+### Backend Api
+-  https://car-rental-sooty-theta.vercel.app
+
+### LiveHost Link
+-  https://stirring-pie-8a9c1b.netlify.app/
+
 ### Prerequisites
 - npm i react-hook-form
 - npm i react-router-dom
@@ -59,7 +71,7 @@ Detailed description of the project, including its purpose and goals.
 2. Add necessary configuration variables in the `.env` file.
    Example:
    ```bash
-    PORT=3000
+    PORT=5000
     DB_URL=your_db_connection_uri
     API_KEY=your_api_key_here
    ```
