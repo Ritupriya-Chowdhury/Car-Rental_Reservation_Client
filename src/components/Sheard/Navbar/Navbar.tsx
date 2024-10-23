@@ -12,14 +12,14 @@ import Sidebar from "./Sidebar";
 import { logout as clearUser } from "../../../redux/slices/authSlice";
 
 
-const Navbar = ({ scrollToContact }: { scrollToContact: () => void }) => {
+const Navbar = () => {
   const dispatch: AppDispatch = useDispatch();
   const { isMenuOpen } = useSelector((state: RootState) => state.navbar);
   const theme = useSelector((state: RootState) => state.theme.theme);
   const user = useSelector((state: RootState) => state.auth.user);
 
   // Log user data for debugging
-  console.log('User data:', user);
+  
 
   
   const navigate = useNavigate();
@@ -45,14 +45,8 @@ const Navbar = ({ scrollToContact }: { scrollToContact: () => void }) => {
     }
   };
 
-  // Navigate to contact section
-  const handleContactClick = () => {
-    navigate("/about");
-    setTimeout(() => {
-      scrollToContact();
-    }, 100);
-  };
-
+  
+ 
   return (
     <header
       className={`fixed top-0 left-0 z-10 w-full p-4 flex justify-between items-center shadow-xl ${
@@ -99,8 +93,8 @@ const Navbar = ({ scrollToContact }: { scrollToContact: () => void }) => {
             >
               About Us
             </Link>
-            <button
-              onClick={handleContactClick}
+            <Link to='/contact'
+             
               className={`transition-colors duration-100 ${
                 theme === "light"
                   ? "hover:text-2xl"
@@ -108,7 +102,7 @@ const Navbar = ({ scrollToContact }: { scrollToContact: () => void }) => {
               }`}
             >
               Contact
-            </button>
+            </Link>
           </nav>
           {user && (
             <div
@@ -151,7 +145,7 @@ const Navbar = ({ scrollToContact }: { scrollToContact: () => void }) => {
             isMenuOpen ? "left-0" : "-left-full"
           } fixed top-0 bottom-0 z-20 
          ${theme === "dark" ? "bg-gray-900 text-white" : "bg-white text-black"}
-         px-8 pb-6 pt-16 hidden lg:block mt-28
+         px-8 pb-6 pt-4 hidden lg:block mt-[111px]
          transition-transform duration-200 ease-in-out rounded-r-md shadow-xl`}
         >
           <Sidebar />
@@ -252,8 +246,8 @@ const Navbar = ({ scrollToContact }: { scrollToContact: () => void }) => {
               </Link>
             </li>
             <li>
-              <button
-                onClick={handleContactClick}
+              <Link to='/contact'
+                
                 className={`transition-colors duration-100 ${
                   theme === "light"
                     ? "hover:text-2xl"
@@ -261,7 +255,7 @@ const Navbar = ({ scrollToContact }: { scrollToContact: () => void }) => {
                 }`}
               >
                 Contact
-              </button>
+              </Link>
             </li>
           </ul>
           {user && <Sidebar />}

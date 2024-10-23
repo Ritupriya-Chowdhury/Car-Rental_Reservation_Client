@@ -17,6 +17,7 @@ export type Car= {
     
   }
 export type createCar= {
+  
     
   name: string;
   image: string;
@@ -31,12 +32,15 @@ export type createCar= {
   endDate:string;
   carType: string;
  
+ 
   }
 
   export type CarState= {
+    [x: string]: any;
     cars: Car[];
     carDetails: Car | null;
     loading: boolean;
     error: string | null;
+    message: string | null;
   }
   

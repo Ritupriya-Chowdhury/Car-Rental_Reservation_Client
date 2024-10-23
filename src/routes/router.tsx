@@ -1,4 +1,3 @@
-// src/routes/router.tsx
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import Login from "../pages/Login/Login";
@@ -10,6 +9,11 @@ import NotFoundPage from "../pages/Error/NotFound";
 import ForgotPassword from "../components/Login/ForgotPassword";
 import ResetPassword from "../components/Login/ResetPassword";
 import SignUp from "../pages/Register/Register";
+import ProtectedRoute from "../components/Layouts/ProtectedRoute";
+import Unauthorized from "../pages/Error/Unauthorized";
+import { bothPaths } from "./bothPaths";
+
+
 
 const router = createBrowserRouter([
   {
@@ -30,15 +34,21 @@ const router = createBrowserRouter([
   },
   {
     path: "/admin",
-    element: <App />,
+    element: <ProtectedRoute allowedRoles={['admin']} />, 
     children: routeGenerator(adminPaths),
-    errorElement: <NotFoundPage />,
+    errorElement: <Unauthorized/>,
   },
   {
     path: "/user",
-    element: <App />,
+    element: <ProtectedRoute allowedRoles={['user']} />, 
     children: routeGenerator(userPaths),
-    errorElement: <NotFoundPage />,
+    errorElement: <Unauthorized/>,
+  },
+  {
+    path: "/",
+    element: <ProtectedRoute allowedRoles={['user','admin']} />, 
+    children: routeGenerator(bothPaths),
+    errorElement: <Unauthorized/>,
   },
   {
     path: "/forgot-password",

@@ -32,7 +32,7 @@ export const createUser = createAsyncThunk(
         "https://car-rental-sooty-theta.vercel.app/api/auth/signup",
         userData
       );
-      console.log(userData)
+      
       return response.data; 
     } catch (error) {
       const axiosError = error as AxiosError; // Type assertion for AxiosError

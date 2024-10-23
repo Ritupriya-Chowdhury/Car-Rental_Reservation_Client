@@ -9,6 +9,7 @@ const CarList = () => {
   const theme = useAppSelector((state: RootState) => state.theme.theme);
   const dispatch = useAppDispatch();
   const { cars, loading, error } = useSelector((state: RootState) => state.cars);
+  console.log(cars)
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [minPrice, setMinPrice] = useState<number | null>(null);
@@ -20,7 +21,7 @@ const CarList = () => {
   }, [dispatch]);
 
   if (loading) {
-    return <div className="text-center py-12">Loading...</div>;
+    return <div className="text-center py-32">Loading...</div>;
   }
 
   if (error) {

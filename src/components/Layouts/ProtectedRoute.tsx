@@ -1,18 +1,35 @@
-import { ReactNode } from "react"
-import { useAppSelector } from "../../redux/hook"
-import { useCurrentToken } from "../../redux/slices/authSlice"
-import { Navigate } from "react-router-dom";
+import { Navigate} from "react-router-dom";
+import { useAppSelector } from "../../redux/hook";
+import UserLayout from "./UserLayout";
+import AdminLayout from "./AdminLayout";
 
 
 
-const ProtectedRoute =({children}: {children: ReactNode})=>{
-    const token= useAppSelector(useCurrentToken);
-     if(!token){
-        return <Navigate to='signin' replace={true} />;
-     }
-    return children;
+interface ProtectedRouteProps {
+  allowedRoles: string[];
+}
 
+const ProtectedRoute = ({ allowedRoles }: ProtectedRouteProps) => {
+  const { user } = useAppSelector((state) => state.auth); 
+
+
+  if (!user) {
+    return <Navigate to="/signin" />;
+  }
+
+  if (!allowedRoles.includes(user.role)) {
+    return <Navigate to="/unauthorized" />;
+  }
+  if(user.role==='user')
+{return <div>
+ <UserLayout/>
+</div>
+}
+  if(user.role==='admin')
+{return <div>
+ <AdminLayout/>
+</div>
+}
 };
-
 
 export default ProtectedRoute;

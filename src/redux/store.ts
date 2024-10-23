@@ -4,6 +4,7 @@ import themeReducer from './slices/themeSlice'
 import featuredCarsSliceReducer from "./slices/featuredCarsSlice";
 import carsReducer from './slices/carSlice';
 import authReducer from './slices/authSlice';
+import bookingReducer from './slices/bookingSlice';
 import { baseApi } from "./api/baseApi";
 import { 
   persistStore, 
@@ -36,6 +37,7 @@ export const store = configureStore({
       [baseApi.reducerPath]: baseApi.reducer,
       auth:persistAuthReducer,
       createUser: createUserReducer,
+      booking:bookingReducer
       
     },
     middleware: getDefaultMiddlewares=>

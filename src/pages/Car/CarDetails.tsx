@@ -4,17 +4,37 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { fetchCarDetails } from "../../redux/slices/carSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
+import Swal from "sweetalert2";
 
 const CarDetails = () => {
   const theme = useAppSelector((state: RootState) => state.theme.theme);
+  const user = useSelector((state: RootState) => state.auth.user);
   const { id } = useParams<{ id: string }>();
   const dispatch = useAppDispatch();
   const { carDetails, loading, error } = useSelector(
     (state: RootState) => state.cars
   );
+  const navigate = useNavigate();
+
+  const handleBookNow=()=>{
+
+    if(!user){
+      Swal.fire({
+        icon: "error",
+        title: "Login First!",
+        
+      });
+      
+
+    }
+    else{
+      navigate("/booking/booking-form", { state: { carId: id } });
+    }
+  }
+  
   const [selectedExtras, setSelectedExtras] = useState<string[]>([]);
   const [zoomImage, setZoomImage] = useState<string | null>(null);
-  const navigate = useNavigate();
+ 
 
   useEffect(() => {
     if (id) {
@@ -135,7 +155,7 @@ const CarDetails = () => {
               </ul>
             </div>
             <div className="mt-6">
-              <button className="px-4 py-2 bg-yellow-400 text-black font-bold rounded-lg hover:bg-yellow-500">
+              <button onClick={()=>handleBookNow()} className="px-4 py-2 bg-yellow-400 text-black font-bold rounded-lg hover:bg-yellow-500">
                 Book Now
               </button>
             </div>

@@ -36,20 +36,22 @@ const Login = () => {
   });
 
   const [login, { data, error }] = useSignInMutation();
-  console.log(data)
-  console.log((error as any)?.data?.message)
-  // const errorMessage = (error as any)?.data?.message || 'Something went wrong';
-      // toast.error(errorMessage, { id: (error as any)?.status, duration: 4000 });
-      
 
+  console.log((error as any)?.data?.message)
+  console.log(data)
+  
+  
+ 
   const onSubmit = async (data: FieldValues) => {
-    // const toastId = toast.loading('Logging in');
+    
     try {
+    
       const userInfo = {
         email: data.email,
         password: data.password,
       };
-      
+    
+      console.log("UserId:",data)
       const res = await login(userInfo).unwrap();
       const user = verifyToken(res.data.refreshToken) as TUser;
     
