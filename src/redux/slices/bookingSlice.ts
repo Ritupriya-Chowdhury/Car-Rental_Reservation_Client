@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { BookingState, BookingCriteria, BookingData } from "../types/Booking";
+import { BookingState, BookingCriteria,  CreateBookingData } from "../types/Booking";
 import { RootState } from "../store";
 
 // Initial state for booking
@@ -48,7 +48,8 @@ export const fetchFilteredCars = createAsyncThunk(
 // Create a booking
 export const createBooking = createAsyncThunk(
   "booking/createBooking",
-  async (bookingData: BookingData, { rejectWithValue, getState }) => {
+  async (bookingData: CreateBookingData, { rejectWithValue, getState }) => {
+    console.log(bookingData)
     try {
       const state = getState() as RootState;
       const token = state.auth.token;
@@ -62,7 +63,7 @@ export const createBooking = createAsyncThunk(
           },
         }
       );
-
+      
       return response.data.data;
     } catch (error: any) {
       return rejectWithValue(error.message || "Failed to create booking");

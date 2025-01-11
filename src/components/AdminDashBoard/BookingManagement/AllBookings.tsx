@@ -7,7 +7,7 @@ import { BookingData } from "../../../redux/types/Booking";
 
 const AllBookings = () => {
   const dispatch = useAppDispatch();
-
+  const theme = useSelector((state: RootState) => state.theme.theme);
   const { loading, error, bookings } = useSelector(
     (state: RootState) => state.booking
   );
@@ -18,56 +18,84 @@ const AllBookings = () => {
 
   if (loading) return <div className="text-center">Loading...</div>;
   if (error)
-    return <div className="text-red-500 text-center">Error: {error}</div>;
+    return (
+      <div
+        className={`${
+          theme === "dark" ? "text-white" : "text-black"
+        } text-center`}
+      >
+        No bookings available.
+      </div>
+    );
 
   return (
-    <div className=" p-8 mt-8 bg-gray-100 mx-2">
+    <div className="p-8 mt-8 bg-gray-100 mx-2">
       {!bookings || bookings.length === 0 ? (
         <div className="text-center">No bookings available.</div>
       ) : (
-        <div className="grid grid-cols-1 gap-4">
-          {bookings.map((booking: BookingData) => (
-            <div
-              key={booking.nidOrPassport}
-              className="border p-4 rounded-lg shadow-md text-left bg-white"
-            >
-              <h3 className="text-lg font-semibold">Car: {booking.car.name}</h3>
-              <p>
-                <strong>Date:</strong> {booking.date}
-              </p>
-              <p>
-                <strong>Start Time:</strong> {booking.startTime}
-              </p>
-              <p>
-                <strong>End Time:</strong> {booking.endTime}
-              </p>
-              <p>
-                <strong>Payment Status:</strong> {booking.paymentStatus}
-              </p>
-              <div>
-                <strong>Payment Details:</strong>
-                <p>Card Number : {booking.paymentDetails.cardNumber}</p>
-                <p>Expiry : {booking.paymentDetails.expiry}</p>
-                <p>CVV : {booking.paymentDetails.cvv}</p>
-              </div>
-
-              <p>
-                <strong>Status:</strong> {booking.status}
-              </p>
-
-              <div className="flex   my-4   font-bold ">
-                <button className=" mr-4 border border-gray-500 bg-gray-100 hover:bg-gray-400   rounded-lg w-24 h-8">
-                 Approve
-                </button>
-                <button className=" border border-gray-500 bg-gray-100 hover:bg-gray-400  rounded-lg w-24 h-8">
-                  Cancel
-                </button>
-              </div>
-            </div>
-          ))}
+        <div className="overflow-x-auto">
+          <table className="table-auto border-collapse border border-gray-300 w-full text-left">
+            <thead>
+              <tr className="bg-gray-200">
+                <th className="border border-gray-300 px-2 py-2">Car</th>
+                <th className="border border-gray-300 px-2 py-2">User</th>
+                <th className="border border-gray-300 px-2 py-2">Date</th>
+                <th className="border border-gray-300 px-2 py-2">Start Time</th>
+                <th className="border border-gray-300 px-2 py-2">End Time</th>
+                <th className="border border-gray-300 px-2 py-2">
+                  Payment Status
+                </th>
+                <th className="border border-gray-300 px-2 py-2">Status</th>
+                <th className="border border-gray-300 px-2 py-2 text-center">
+                  Actions
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {bookings.map((booking: BookingData, index: number) => (
+                <tr
+                  key={booking.nidOrPassport}
+                  className={index % 2 === 0 ? "bg-white" : "bg-gray-100"}
+                >
+                  <td className="border border-gray-300 px-2 py-2">
+                    {booking.car.name}
+                  </td>
+                  <td className="border border-gray-300 px-2 py-2">
+                    {booking.user.name}
+                  </td>
+                  <td className="border border-gray-300 px-2 py-2">
+                    {booking.date}
+                  </td>
+                  <td className="border border-gray-300 px-2 py-2">
+                    {booking.startTime}
+                  </td>
+                  <td className="border border-gray-300 px-2 py-2">
+                    {booking.endTime}
+                  </td>
+                  <td className="border border-gray-300 px-2 py-2">
+                    {booking.paymentStatus}
+                  </td>
+                  <td className="border border-gray-300 px-2 py-2">
+                    {booking.status}
+                  </td>
+                  <td className="border border-gray-300 px-2 py-2 text-center">
+                    <div className="flex justify-center gap-4">
+                      <button className="border border-green-500 bg-green-100 hover:bg-green-300  text-green-700 rounded-lg px-2 py-1">
+                        Approve
+                      </button>
+                      <button className="border border-red-500 bg-red-100 hover:bg-red-300 hover:text-red-700 text-red-700 rounded-lg px-2 py-1">
+                        Cancel
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       )}
     </div>
   );
 };
+
 export default AllBookings;

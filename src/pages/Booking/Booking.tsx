@@ -27,7 +27,7 @@ const BookingPage = () => {
   const {
     cars: filteredCars,
     loading: bookingLoading,
-    error: bookingError,
+   
   } = useSelector((state: RootState) => state.booking);
 
   useEffect(() => {
@@ -147,7 +147,7 @@ const BookingPage = () => {
 
         {/* Error Handling */}
         {carsError && <p className="text-red-500">Error: {carsError}</p>}
-        {bookingError && <p className="text-red-500">Error: {bookingError}</p>}
+        {/* {bookingError && <p className="text-red-500">Error: {bookingError}</p>} */}
 
         {/* Display Filtered Cars */}
         {filteredCars.length > 0 && (

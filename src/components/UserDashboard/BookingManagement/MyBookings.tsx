@@ -1,6 +1,6 @@
 import  { useEffect } from "react";
 import {  useSelector } from "react-redux";
-import { useAppDispatch } from "../../../redux/hook";
+import { useAppDispatch, useAppSelector } from "../../../redux/hook";
 import { RootState } from "../../../redux/store";
 import { getMyBookings } from "../../../redux/slices/bookingSlice";
 import { BookingData } from "../../../redux/types/Booking";
@@ -8,6 +8,7 @@ import { BookingData } from "../../../redux/types/Booking";
 
 const MyBookings = () => {
     const dispatch = useAppDispatch();
+    const theme = useAppSelector((state: RootState) => state.theme.theme);
      const { loading, error, bookings } = useSelector((state: RootState) => state.booking);
   
     
@@ -19,14 +20,14 @@ const MyBookings = () => {
    
   
     if (loading) return <div className="text-center">Loading...</div>;
-    if (error) return <div className="text-red-500 text-center">Error: {error}</div>;
+    if (error) return <div className={`${theme==='dark'?'text-white':'text-black'} text-center text-xl mt-8`}>No bookings available.</div>;
 
   return (
     <div className=" p-4 mt-12 ">
       
-      {!bookings || bookings.length === 0 ? (
+      {!bookings || bookings.length === 0 ? 
         <div className="text-center">No bookings available.</div>
-      ) : (
+       : (
         <div className="grid grid-cols-1 gap-4">
           {bookings.map((booking: BookingData) => (
             <div key={booking.nidOrPassport} className="border p-4 rounded-lg shadow-md bg-white">

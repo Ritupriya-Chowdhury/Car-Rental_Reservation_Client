@@ -3,7 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { RootState } from "../../redux/store";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
-import { BookingData, CreateBookingData } from "../../redux/types/Booking";
+import {  CreateBookingData } from "../../redux/types/Booking";
 import { createBooking } from "../../redux/slices/bookingSlice";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -18,7 +18,6 @@ const schema: yup.ObjectSchema<CreateBookingData> = yup.object().shape({
   }),
   date: yup.string().required("Date is required"),
   startTime: yup.string().required("Start Time is required"),
-  endTime: yup.string().required("End Time is required"),
   additionalOptions: yup.object().shape({
     gps: yup.boolean(),
     childSeat: yup.boolean(),
@@ -37,14 +36,15 @@ const BookingForm = () => {
     formState: { errors },
     setValue,
     getValues,
-  } = useForm<BookingData>({
+  } = useForm<CreateBookingData>({
     resolver: yupResolver(schema),
   });
 
   const theme = useAppSelector((state: RootState) => state.theme.theme);
 
-  const onSubmit: SubmitHandler<BookingData> = async (data) => {
-    const bookingData: BookingData = {
+  const onSubmit: SubmitHandler<CreateBookingData> = async (data) => {
+   
+    const bookingData: CreateBookingData = {
       carId: carId,
       nidOrPassport: data.nidOrPassport,
       drivingLicense: data.drivingLicense,
@@ -55,7 +55,6 @@ const BookingForm = () => {
       },
       date: data.date,
       startTime: data.startTime,
-      endTime: data.endTime,
       additionalOptions: {
         gps: data.additionalOptions?.gps || false,
         childSeat: data.additionalOptions?.childSeat || false,
@@ -63,11 +62,11 @@ const BookingForm = () => {
     };
 
  
-    
+   
     try {
       
       const resultAction = await dispatch(createBooking(bookingData));
-      console.log("Booking Form Data:", resultAction.payload._id);
+     
      
       if (createBooking.fulfilled.match(resultAction)) {
       
@@ -182,18 +181,7 @@ const BookingForm = () => {
           )}
         </div>
 
-        <div>
-          <label className="block text-sm font-medium text-gray-700">End Time</label>
-          <input
-            type="time"
-            {...register("endTime")}
-            className={`mt-1 block w-full p-2 border ${errors.endTime ? "border-red-500" : "border-gray-300"} rounded-md`}
-          />
-          {errors.endTime && (
-            <p className="text-red-500 text-xs">{errors.endTime.message}</p>
-          )}
-        </div>
-
+        
         <div>
           <label className="block text-sm font-medium text-gray-700">Additional Options</label>
           <div className="flex flex-col space-y-2">

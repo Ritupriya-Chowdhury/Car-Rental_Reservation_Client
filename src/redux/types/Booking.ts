@@ -6,6 +6,7 @@ export type BookingData = {
  _id?: string;
   carId?: string;
   car?: any;
+  user?:any;
   date: string;
   startTime: string;
   endTime: string;
@@ -30,7 +31,6 @@ export type CreateBookingData = {
   carId?: string;
   date: string;
   startTime: string;
-  endTime: string;
   nidOrPassport: string;
   drivingLicense: string;
   paymentDetails: {

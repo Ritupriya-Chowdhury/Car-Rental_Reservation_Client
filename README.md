@@ -46,7 +46,7 @@ Detailed description of the project, including its purpose and goals.
 -  https://car-rental-sooty-theta.vercel.app
 
 ### LiveHost Link
--  https://stirring-pie-8a9c1b.netlify.app/
+-  https://car-rental-reservation-system-six.vercel.app/
 
 ### Prerequisites
 - npm i react-hook-form
