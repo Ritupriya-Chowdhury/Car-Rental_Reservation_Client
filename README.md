@@ -48,6 +48,14 @@ Detailed description of the project, including its purpose and goals.
 ### LiveHost Link
 -  https://car-rental-reservation-system-six.vercel.app/
 
+### Admin email and password
+email: web@programming-hero.com
+password: ph-password
+
+### User email and password
+email: shreyashree@gmail.com
+password: Kake_boli
+
 ### Prerequisites
 - npm i react-hook-form
 - npm i react-router-dom

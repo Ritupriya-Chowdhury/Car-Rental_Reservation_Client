@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { HiMenuAlt3, HiMenuAlt2 } from "react-icons/hi";
 import { IoSunny } from "react-icons/io5";
-import { FaMoon } from "react-icons/fa";
+import { FaMoon, FaUsers } from "react-icons/fa";
 import { AppDispatch, RootState } from "../../../redux/store";
 import { useAppDispatch, useAppSelector } from "../../../redux/hook";
 import { toggleTheme } from "../../../redux/slices/themeSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { IoHome } from "react-icons/io5";
-import { MdDashboard } from "react-icons/md";
+import { MdDashboard, MdLibraryBooks } from "react-icons/md";
 import { logout as clearUser } from "../../../redux/slices/authSlice";
 
 const AdminSidebar = () => {
@@ -29,7 +29,7 @@ const AdminSidebar = () => {
   // Logout handler
   const handleLogout = async () => {
     try {
-       // Call the logout mutation
+      // Call the logout mutation
       dispatch(clearUser()); // Clear the user from the Redux state
       navigate("/signin"); // Redirect to sign-in after logout
     } catch (error) {
@@ -37,8 +37,15 @@ const AdminSidebar = () => {
     }
   };
 
+  // Close sidebar after option click (for mobile)
+  const handleLinkClick = () => {
+    if (window.innerWidth <= 768) {
+      setIsOpen(false); // Close sidebar if it's a mobile screen
+    }
+  };
+
   return (
-    <div className={`${theme === "dark" ? "bg-gray-700" : "bg-white"} `}>
+    <div className={`${theme === "dark" ? "bg-gray-700" : "bg-white"}`}>
       <div className="flex">
         {/* Sidebar */}
         <div
@@ -56,6 +63,7 @@ const AdminSidebar = () => {
                 className={`py-2 px-4 ${
                   theme === "dark" ? "hover:bg-gray-700" : "hover:bg-gray-300"
                 } rounded flex`}
+                onClick={handleLinkClick}
               >
                 <div className="mr-2 mt-1">
                   <IoHome />
@@ -68,6 +76,7 @@ const AdminSidebar = () => {
                 className={`py-2 px-4 ${
                   theme === "dark" ? "hover:bg-gray-700" : "hover:bg-gray-300"
                 } rounded flex`}
+                onClick={handleLinkClick}
               >
                 <div className="mr-2 mt-1">
                   <MdDashboard />
@@ -77,35 +86,51 @@ const AdminSidebar = () => {
                 </div>
               </li>
               <li
-                className={`py-2 px-4  ${
+                className={`py-2 px-4 ${
                   theme === "dark" ? "hover:bg-gray-700" : "hover:bg-gray-300"
-                } rounded `}
+                } rounded flex`}
+                onClick={handleLinkClick}
               >
-                <div className=" ">
+                <div className="mr-2 mt-1"><MdLibraryBooks /></div>
+                <div>
                   <Link to="/booking">Booking</Link>
                 </div>
               </li>
-             
+              <li
+                className={`py-2 px-4 ${
+                  theme === "dark" ? "hover:bg-gray-700" : "hover:bg-gray-300"
+                } rounded flex`}
+                onClick={handleLinkClick}
+              >
+                <div className="mr-2 mt-3"><FaUsers /></div>
+                <div>
+                  <Link to="/admin/user-management">Manage User</Link>
+                </div>
+              </li>
+
               {/* Theme Toggle Button */}
               <li>
                 <div
                   className={`text-xl py-2 px-8 rounded hover:text-2xl  ${
                     theme === "dark" ? "hover:bg-gray-700" : "hover:bg-gray-300"
                   }`}
-                  onClick={handleThemeToggle}
+                  onClick={() => {
+                    handleThemeToggle();
+                    handleLinkClick();
+                  }}
                 >
                   {theme === "dark" ? <IoSunny /> : <FaMoon />}
                 </div>
               </li>
               <li>
-              <button 
-            onClick={handleLogout}
-            className={`py-2 px-4  ${
-              theme === "dark" ? "hover:bg-gray-700" : "hover:bg-gray-300"
-            } rounded `}
-          >
-            Logout
-          </button>
+                <button
+                  onClick={handleLogout}
+                  className={`py-2 px-4  ${
+                    theme === "dark" ? "hover:bg-gray-700" : "hover:bg-gray-300"
+                  } rounded `}
+                >
+                  Logout
+                </button>
               </li>
             </ul>
           </div>
@@ -122,8 +147,6 @@ const AdminSidebar = () => {
             {isOpen ? <HiMenuAlt2 /> : <HiMenuAlt3 />}
           </button>
         </div>
-
-        
       </div>
     </div>
   );

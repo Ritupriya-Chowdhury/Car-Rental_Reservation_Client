@@ -12,7 +12,7 @@ const userRole = {
   USER: 'user',
 };
 
-const Sidebar = () => {
+const DropDown= () => {
   const theme = useAppSelector((state: RootState) => state.theme.theme);
   const user = useAppSelector((state: RootState) => state.auth.user);
   const role = user?.role; // example role
@@ -30,12 +30,12 @@ const Sidebar = () => {
   }
 
   return (
-    <div className="lg:mt-0 mt-4">
+    <div className="">
     
       <ul className="space-y-4 text-xl font-semibold">
         {sidebarItems.map((item: TNavbarItem) => (
           <li key={item.key} className={`transition-colors duration-100 ${
-            theme === "light" ? "hover:text-2xl" : "hover:text-2xl hover:text-yellow-400"
+            theme === "light" ? "hover:text-2xl" : "hover:text-2xl text-gray-50 hover:text-yellow-400"
           }`}>
             <Link to={item.path ?? '#'} className="block">
               {item.label}
@@ -43,7 +43,7 @@ const Sidebar = () => {
           </li>
         ))}
         <li  className={`transition-colors duration-100 ${
-            theme === "light" ? "hover:text-2xl" : "hover:text-2xl hover:text-yellow-400" }`}>
+            theme === "light" ? "hover:text-2xl" : "hover:text-2xl text-gray-50 hover:text-yellow-400" }`}>
             <Link to='/booking'>Booking</Link>
 
 
@@ -53,4 +53,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default DropDown;

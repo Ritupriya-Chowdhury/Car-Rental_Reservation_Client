@@ -16,6 +16,14 @@ const AllBookings = () => {
     dispatch(getAllBookings());
   }, [dispatch]);
 
+  const isBookingExpired = (date: string,  endTime: string) => {
+    const currentDate = new Date();
+  
+    const bookingEnd = new Date(`${date}T${endTime}`);
+
+    return currentDate > bookingEnd; // Check if the booking end time has passed
+  };
+
   if (loading) return <div className="text-center">Loading...</div>;
   if (error)
     return (
@@ -24,7 +32,7 @@ const AllBookings = () => {
           theme === "dark" ? "text-white" : "text-black"
         } text-center`}
       >
-        No bookings available.
+        {error || "An error occurred while fetching bookings."}
       </div>
     );
 
@@ -52,44 +60,59 @@ const AllBookings = () => {
               </tr>
             </thead>
             <tbody>
-              {bookings.map((booking: BookingData, index: number) => (
-                <tr
-                  key={booking.nidOrPassport}
-                  className={index % 2 === 0 ? "bg-white" : "bg-gray-100"}
-                >
-                  <td className="border border-gray-300 px-2 py-2">
-                    {booking.car.name}
-                  </td>
-                  <td className="border border-gray-300 px-2 py-2">
-                    {booking.user.name}
-                  </td>
-                  <td className="border border-gray-300 px-2 py-2">
-                    {booking.date}
-                  </td>
-                  <td className="border border-gray-300 px-2 py-2">
-                    {booking.startTime}
-                  </td>
-                  <td className="border border-gray-300 px-2 py-2">
-                    {booking.endTime}
-                  </td>
-                  <td className="border border-gray-300 px-2 py-2">
-                    {booking.paymentStatus}
-                  </td>
-                  <td className="border border-gray-300 px-2 py-2">
-                    {booking.status}
-                  </td>
-                  <td className="border border-gray-300 px-2 py-2 text-center">
-                    <div className="flex justify-center gap-4">
-                      <button className="border border-green-500 bg-green-100 hover:bg-green-300  text-green-700 rounded-lg px-2 py-1">
-                        Approve
-                      </button>
-                      <button className="border border-red-500 bg-red-100 hover:bg-red-300 hover:text-red-700 text-red-700 rounded-lg px-2 py-1">
-                        Cancel
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
+              {bookings.map((booking: BookingData, index: number) => {
+                const expired = isBookingExpired(
+                  booking.date,
+                  booking.startTime,
+                  
+                );
+
+                return (
+                  <tr
+                    key={booking.nidOrPassport}
+                    className={index % 2 === 0 ? "bg-white" : "bg-gray-100"}
+                  >
+                    <td className="border border-gray-300 px-2 py-2">
+                      {booking.car.name}
+                    </td>
+                    <td className="border border-gray-300 px-2 py-2">
+                      {booking.user.name}
+                    </td>
+                    <td className="border border-gray-300 px-2 py-2">
+                      {booking.date}
+                    </td>
+                    <td className="border border-gray-300 px-2 py-2">
+                      {booking.startTime}
+                    </td>
+                    <td className="border border-gray-300 px-2 py-2">
+                      {booking.endTime}
+                    </td>
+                    <td className="border border-gray-300 px-2 py-2">
+                      {booking.paymentStatus}
+                    </td>
+                    <td className="border border-gray-300 px-2 py-2">
+                      {expired ? "Canceled" : booking.status}
+                    </td>
+                    <td className="border border-gray-300 px-2 py-2 text-center">
+                      <div className="flex justify-center gap-4">
+                        <button
+                          disabled={expired}
+                          className={`${
+                            expired
+                              ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                              : "border border-green-500 bg-green-100 hover:bg-green-300 text-green-700"
+                          } rounded-lg px-2 py-1`}
+                        >
+                          Approve
+                        </button>
+                        <button className="border border-red-500 bg-red-100 hover:bg-red-300 hover:text-red-700 text-red-700 rounded-lg px-2 py-1">
+                          Cancel
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>

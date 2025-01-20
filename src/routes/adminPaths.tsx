@@ -2,6 +2,7 @@ import CarUpdate from "../components/AdminDashBoard/CarUpdate";
 import CreateCar from "../components/AdminDashBoard/CreateCar";
 import ExistingCarsPage from "../components/AdminDashBoard/ExistingCar";
 import AdminDashBoard from "../pages/Admin/AdminDashBoard";
+import ManageUser from "../pages/Admin/ManageUser";
 
 export const adminPaths=[
     
@@ -25,4 +26,10 @@ export const adminPaths=[
       path: "existing-car/update-car/:id",
       element:<CarUpdate/>,
     },
+    {
+      name: 'Manage User',
+      path: "user-management",
+      element:<ManageUser/>,
+    },
+
   ]

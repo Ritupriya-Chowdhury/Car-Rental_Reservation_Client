@@ -38,29 +38,37 @@ const UserProfile = () => {
     <div className={`p-4`}>
    
       <div className="bg-white p-6 rounded shadow text-xl">
-        <p>
+       <div className="grid grid-cols-1 md:grid-cols-2 md:gap-4 ">
+       <div>
+       <p>
           <strong>Name:</strong> {userProfile.name}
         </p>
         <p>
           <strong>Email:</strong> {userProfile.email}
         </p>
+       </div>
+        <div>
         <p>
           <strong>Phone:</strong> {userProfile.phone}
         </p>
         <p>
           <strong>Address:</strong> {userProfile.address}
         </p>
+        </div>
+       </div>
         <p>
           <strong>Status:</strong> {userProfile.status}
         </p>
 
-        <div className="flex text-base">
-          <p className="bg-yellow-400 hover:bg-yellow-500  font-bold w-36  md:h-12 h-14   md:py-3 py-1 text-center  mt-4 rounded-lg">
+        <div className="grid grid-cols-1 md:grid-cols-2 md:gap-4 text-base">
+         <div> <p className="bg-yellow-400 hover:bg-yellow-500  font-bold w-40  h-12    
+         py-3  text-center  mt-4 rounded-lg">
             <Link to="update-profile">Update Profile</Link>
-          </p>
-          <p className="bg-yellow-400 hover:bg-yellow-500  ml-2  font-bold w-40 md:h-12 h-14  text-center md:py-3 py-1  mt-4 rounded-lg">
+          </p></div>
+          <div><p className="bg-yellow-400 hover:bg-yellow-500   font-bold w-40 h-12   
+          text-center py-3   mt-4 rounded-lg">
             <Link to="change-password">Change Password</Link>
-          </p>
+          </p></div>
         </div>
       </div>
     </div>

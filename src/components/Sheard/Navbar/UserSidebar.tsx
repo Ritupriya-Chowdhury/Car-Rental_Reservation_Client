@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { HiMenuAlt3, HiMenuAlt2 } from "react-icons/hi";
 import { IoSunny } from "react-icons/io5";
-import { FaMoon } from "react-icons/fa";
+import { FaMoon, FaUsers } from "react-icons/fa";
 import { AppDispatch, RootState } from "../../../redux/store";
 import { useAppDispatch, useAppSelector } from "../../../redux/hook";
 import { toggleTheme } from "../../../redux/slices/themeSlice";
@@ -21,6 +21,11 @@ const UserSidebar = () => {
     setIsOpen(!isOpen);
   };
 
+  // Close Sidebar on Option Click
+  const closeSidebar = () => {
+    setIsOpen(false);
+  };
+
   // Theme toggle handler
   const handleThemeToggle = () => {
     dispatch(toggleTheme());
@@ -29,7 +34,7 @@ const UserSidebar = () => {
   // Logout handler
   const handleLogout = async () => {
     try {
-       // Call the logout mutation
+      // Call the logout mutation
       dispatch(clearUser()); // Clear the user from the Redux state
       navigate("/signin"); // Redirect to sign-in after logout
     } catch (error) {
@@ -61,7 +66,9 @@ const UserSidebar = () => {
                   <IoHome />
                 </div>
                 <div>
-                  <Link to="/">Home</Link>
+                  <Link to="/" onClick={closeSidebar}>
+                    Home
+                  </Link>
                 </div>
               </li>
               <li
@@ -73,39 +80,47 @@ const UserSidebar = () => {
                   <MdDashboard />
                 </div>
                 <div>
-                  <Link to="/user/dashboard">Dashboard</Link>
+                  <Link to="/user/dashboard" onClick={closeSidebar}>
+                    Dashboard
+                  </Link>
                 </div>
               </li>
               <li
-                className={`py-2 px-4  ${
+                className={`py-2 px-4 ${
                   theme === "dark" ? "hover:bg-gray-700" : "hover:bg-gray-300"
-                } rounded `}
+                } rounded flex`}
               >
-                <div className=" ">
-                  <Link to="/booking">Booking</Link>
+                 <div className="mr-2 mt-3"><FaUsers /></div>
+                <div>
+                  <Link to="/booking" onClick={closeSidebar}>
+                    Booking
+                  </Link>
                 </div>
               </li>
-             
+
               {/* Theme Toggle Button */}
               <li>
                 <div
                   className={`text-xl py-2 px-8 rounded hover:text-2xl  ${
                     theme === "dark" ? "hover:bg-gray-700" : "hover:bg-gray-300"
                   }`}
-                  onClick={handleThemeToggle}
+                  onClick={() => {
+                    handleThemeToggle();
+                    closeSidebar();
+                  }}
                 >
                   {theme === "dark" ? <IoSunny /> : <FaMoon />}
                 </div>
               </li>
               <li>
-              <button 
-            onClick={handleLogout}
-            className={`py-2 px-4  ${
-              theme === "dark" ? "hover:bg-gray-700" : "hover:bg-gray-300"
-            } rounded `}
-          >
-            Logout
-          </button>
+                <button
+                  onClick={handleLogout}
+                  className={`py-2 px-4  ${
+                    theme === "dark" ? "hover:bg-gray-700" : "hover:bg-gray-300"
+                  } rounded`}
+                >
+                  Logout
+                </button>
               </li>
             </ul>
           </div>
@@ -122,8 +137,6 @@ const UserSidebar = () => {
             {isOpen ? <HiMenuAlt2 /> : <HiMenuAlt3 />}
           </button>
         </div>
-
-        
       </div>
     </div>
   );

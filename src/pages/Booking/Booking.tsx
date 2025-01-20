@@ -80,11 +80,11 @@ const BookingPage = () => {
           </div>
 
           {/* Features */}
-          <div>
+          <div className="">
             <label className="block text-sm font-medium text-gray-700">
               Features
             </label>
-            <div className="space-y-2">
+            <div className="space-x-2 space-y-2">
               <label>
                 <input
                   type="checkbox"

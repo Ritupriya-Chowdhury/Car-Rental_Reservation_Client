@@ -72,7 +72,7 @@ const ExistingCarsPage = () => {
         {loading && <p className="text-blue-500">Loading cars...</p>}
         {error && <p className="text-red-500">{error}</p>}
 
-        <ul className="bg-white shadow-md rounded-lg md:px-12 md:py-8">
+        <ul className="bg-white shadow-md rounded-lg md:px-12 md:py-8 border border-gray-800">
           {filteredCars.map((car) => (
             <li key={car._id} className="flex justify-between items-center border-b p-4 last:border-b-0 hover:bg-gray-100 transition duration-200">
               <span className="text-gray-800 font-semibold">

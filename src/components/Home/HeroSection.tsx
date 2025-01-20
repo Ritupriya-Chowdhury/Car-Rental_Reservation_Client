@@ -15,7 +15,7 @@ const HeroSection = () => {
 
   return (
     <div
-      className={`pt-16 lg:mt-0 mt-16 ${
+      className={`pt-16 lg:mt-0 mt-16 min-h-screen ${
         theme === "dark" ? "bg-black" : "bg-white"
       }`}
     >
