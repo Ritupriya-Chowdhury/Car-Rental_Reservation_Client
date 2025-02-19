@@ -64,10 +64,10 @@ const FeaturedCars = () => {
 
   return (
     <div
-      className={`${theme === "dark" ? "bg-gray-600" : "bg-gray-300"} py-12`}
+      className={`${theme === "dark" ? "bg-gray-900" : "bg-gray-200"} py-20`}
     >
       <h2
-        className={`text-3xl font-bold text-center mb-5 ${
+        className={`text-3xl font-bold text-center mb-20 ${
           theme === "dark" ? "text-yellow-500 " : "text-black"
         }`}
       >

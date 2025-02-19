@@ -46,7 +46,7 @@ Detailed description of the project, including its purpose and goals.
 -  https://car-rental-sooty-theta.vercel.app
 
 ### LiveHost Link
--  https://car-rental-reservation-system-six.vercel.app/
+-  https://car-rental-reservation-system-six.vercel.app
 
 ### Admin email and password
 email: web@programming-hero.com
@@ -69,12 +69,10 @@ password: Kake_boli
 - npm i sonner
 
 ### Installation Steps
-
 1. Step-by-step instructions on how to install the project.
 2. Provide code examples or commands for clarity.
 
 ### Configuration
-
 1. Create a `.env` file in the root directory of the project.
 2. Add necessary configuration variables in the `.env` file.
    Example:
@@ -86,5 +84,4 @@ password: Kake_boli
 3. Explain any specific configuration requirements or variables used in your project.
 
 ## Usage
-
 Instructions or examples for using the project. Include screenshots or code snippets if applicable.

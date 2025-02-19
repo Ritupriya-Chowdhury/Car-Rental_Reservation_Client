@@ -42,8 +42,8 @@ const FAQSection = () => {
   };
 
   return (
-    <div className={`mx-auto px-4 py-16 ${theme === 'dark' ? "bg-gray-200" : "bg-gray-100"}`}>
-      <h2 className={`text-4xl font-bold text-center mb-8 text-gray-800  `}>
+    <div className={`mx-auto px-4 py-20 ${theme === 'dark' ? "bg-black text-gray-200" : "text-gray-900 bg-white"}`}>
+      <h2 className={`text-4xl font-bold text-center mb-20   `}>
         Frequently Asked Questions
       </h2>
      <div className='md:flex mt-12'>
@@ -55,7 +55,7 @@ const FAQSection = () => {
           >
             <button
               className="w-full flex text-2xl 
-              font-medium text-gray-800 focus:outline-none"
+              font-medium  focus:outline-none"
               onClick={() => toggleFAQ(index)}
             >
               <span className="text-4xl">
@@ -64,7 +64,7 @@ const FAQSection = () => {
               <span className='ml-2 text-left'>{item.question}</span>
             </button>
             <div
-              className={`mt-2 text-gray-600 transition-all duration-300 text-xl ${
+              className={`mt-2  transition-all duration-300 text-xl ${
                 activeIndex === index ? "max-h-screen" : "max-h-0 overflow-hidden"
               }`}
             >

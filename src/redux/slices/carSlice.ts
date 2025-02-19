@@ -45,7 +45,7 @@ export const createCarListing = createAsyncThunk<
   { rejectValue: string; state: RootState }
 >("cars/createCar", async (carData, { rejectWithValue, getState }) => {
   const state = getState();
-  const token = state.auth.token; // Adjust this according to your authentication setup
+  const token = state.auth.token; 
 
   try {
     const response = await axios.post(
@@ -57,7 +57,8 @@ export const createCarListing = createAsyncThunk<
         },
       }
     );
-    return response.data.data as Car;
+    console.log(response)
+    return response.data.data ;
   } catch (error) {
     let errorMessage = "Failed to create car listing";
     if (axios.isAxiosError(error) && error.response) {

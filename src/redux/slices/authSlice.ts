@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 
-// User type definition
 export type TUser = {
   _id?: string;
   name: string;
@@ -32,17 +31,24 @@ type TAuthState = {
   updateProfileError: string | null; // Specific error field for profile update
 };
 
-// Initial state
-const initialState: TAuthState = {
-  user: null,
-  loading: false,
-  token: null,
-  userProfile: null,
-  error: null,
-  passwordChangeSuccess: null,
-  profileUpdateSuccess: null,
-  updateProfileError: null, // Initialize profile update error as null
+// Load initial state from localStorage
+const loadAuthState = (): TAuthState => {
+  const token = localStorage.getItem("token");
+  const user = localStorage.getItem("user");
+  return {
+    user: user ? JSON.parse(user) : null,
+    loading: false,
+    token: token || null,
+    userProfile: null,
+    error: null,
+    passwordChangeSuccess: null,
+    profileUpdateSuccess: null,
+    updateProfileError: null,
+  };
 };
+
+// Initial state
+const initialState: TAuthState = loadAuthState();
 
 // Create an async thunk for fetching the user profile
 export const fetchUserProfile = createAsyncThunk(
@@ -53,7 +59,7 @@ export const fetchUserProfile = createAsyncThunk(
       {
         method: "GET",
         headers: {
-          Authorization: `${token}`, // Send the token with prefix
+          Authorization: `${token}`, 
         },
       }
     );
@@ -149,6 +155,10 @@ const authSlice = createSlice({
       const { user, token } = action.payload;
       state.user = user;
       state.token = token;
+
+      // Save user and token to localStorage
+      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("token", token);
     },
     logout: (state) => {
       state.user = null;
@@ -157,7 +167,10 @@ const authSlice = createSlice({
       state.error = null;
       state.passwordChangeSuccess = null;
       state.profileUpdateSuccess = null;
-      state.updateProfileError = null; // Reset profile update error on logout
+      state.updateProfileError = null;
+
+      // Remove user and token from localStorage
+      localStorage.removeItem("user");
       localStorage.removeItem("token");
     },
     resetPasswordChangeState: (state) => {
@@ -166,7 +179,7 @@ const authSlice = createSlice({
     },
     resetProfileUpdateState: (state) => {
       state.profileUpdateSuccess = null;
-      state.updateProfileError = null; // Reset profile update error
+      state.updateProfileError = null;
     },
   },
   extraReducers: (builder) => {

@@ -74,8 +74,10 @@ const CreateCar = () => {
         startDate: data.startDate,
         endDate: data.endDate,
         carType: data.carType,
-        image: base64Image, // Base64-encoded image
+        image: base64Image,
       };
+
+      console.log("car Data:", carData)
 
       // Dispatch the createCarListing thunk with carData as JSON
       const resultAction = await dispatch(createCarListing(carData));

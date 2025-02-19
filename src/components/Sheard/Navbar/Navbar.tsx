@@ -18,7 +18,7 @@ const Navbar = () => {
   const { isMenuOpen } = useSelector((state: RootState) => state.navbar);
   const theme = useSelector((state: RootState) => state.theme.theme);
   const user = useSelector((state: RootState) => state.auth.user);
-
+  console.log("Navbar User: ",user)
   const navigate = useNavigate();
 
   const [isDropdownOpen, setDropdownOpen] = useState(false);
@@ -56,27 +56,29 @@ const Navbar = () => {
   };
 
   return (
-    <header
-      className={`fixed top-0 left-0 z-10 w-full px-4 py-2 flex justify-between items-center shadow-xl ${
+    <div className="">
+      <header
+      className={`fixed top-0 left-0 z-10 w-full px-20 py-2 flex justify-between 
+      items-center shadow-xl ${
         theme === "dark" ? "bg-gray-900 text-white" : "bg-white text-black"
       }`}
     >
-      <div>
+      <Link to="/"><div>
         <img
           src={theme === "dark" ? logo : logo2}
           alt="Logo"
-          className="w-48 mr-2"
+          className="w-32 mr-2"
         />
-      </div>
+      </div></Link>
       <div className="space-x-6 items-center hidden lg:block">
         <div className="flex">
-          <nav className="space-x-6 text-xl font-semibold">
+          <nav className="space-x-6 text-lg font-semibold">
             <Link
               to="/"
               className={`transition-colors duration-100 ${
                 theme === "light"
-                  ? "hover:text-2xl"
-                  : "hover:text-2xl hover:text-yellow-400"
+                  ? "hover:text-xl"
+                  : "hover:text-xl hover:text-yellow-400"
               }`}
               onClick={handleMenuClose}
             >
@@ -86,8 +88,8 @@ const Navbar = () => {
               to="/cars"
               className={`transition-colors duration-100 ${
                 theme === "light"
-                  ? "hover:text-2xl"
-                  : "hover:text-2xl hover:text-yellow-400"
+                  ? "hover:text-xl"
+                  : "hover:text-xl hover:text-yellow-400"
               }`}
               onClick={handleMenuClose}
             >
@@ -97,8 +99,8 @@ const Navbar = () => {
               to="/about"
               className={`transition-colors duration-100 ${
                 theme === "light"
-                  ? "hover:text-2xl"
-                  : "hover:text-2xl hover:text-yellow-400"
+                  ? "hover:text-xl"
+                  : "hover:text-xl hover:text-yellow-400"
               }`}
               onClick={handleMenuClose}
             >
@@ -108,8 +110,8 @@ const Navbar = () => {
               to="/contact"
               className={`transition-colors duration-100 ${
                 theme === "light"
-                  ? "hover:text-2xl"
-                  : "hover:text-2xl hover:text-yellow-400"
+                  ? "hover:text-xl"
+                  : "hover:text-xl hover:text-yellow-400"
               }`}
               onClick={handleMenuClose}
             >
@@ -118,7 +120,7 @@ const Navbar = () => {
           </nav>
 
           <div
-            className={`text-xl px-6 pt-1 cursor-pointer hover:text-2xl ${
+            className={`text-xl px-6 pt-1 cursor-pointer hover:text-xl ${
               theme === "dark" ? "hover:text-yellow-400" : ""
             }`}
             onClick={handleThemeToggle}
@@ -133,9 +135,9 @@ const Navbar = () => {
         <div
           className={`${
             isMenuOpen ? "left-0" : "-left-full"
-          } fixed top-0 bottom-0 z-20 
+          } fixed top-0 bottom-0 z-10 
          ${theme === "dark" ? "bg-gray-900 text-white" : "bg-white text-black"}
-         px-8 pb-6 pt-4 hidden lg:block mt-[111px]
+         px-8 pb-6 pt-0 hidden lg:block mt-[111px]
          transition-transform duration-200 ease-in-out rounded-r-md shadow-xl`}
         >
           <Sidebar />
@@ -164,8 +166,8 @@ const Navbar = () => {
           <div
             className={`hidden lg:block ml-2 mr-20  ${
               theme === "dark"
-                ? "hover:text-yellow-400 hover:text-2xl"
-                : "hover:text-2xl"
+                ? "hover:text-yellow-400 hover:text-xl"
+                : "hover:text-xl"
             }`}
           >
             <div onClick={toggleDropdown} className="cursor-pointer">
@@ -183,7 +185,7 @@ const Navbar = () => {
             </div>
             {isDropdownOpen && (
               <div
-                className={`absolute top-20 right-0 w-48 ${
+                className={`absolute top-[70px] right-0 w-48 ${
                   theme === "dark" ? "bg-gray-800" : "bg-white"
                 } shadow-lg rounded-md `}
               >
@@ -196,8 +198,8 @@ const Navbar = () => {
                       onClick={handleLogout}
                       className={`transition-colors duration-100 font-semibold text-xl ${
                         theme === "light"
-                          ? "hover:text-2xl"
-                          : "hover:text-2xl text-gray-50 hover:text-yellow-400"
+                          ? "hover:text-xl"
+                          : "hover:text-xl text-gray-50 hover:text-yellow-400"
                       }`}
                     >
                       Logout
@@ -258,7 +260,7 @@ border-2 border-yellow-400 text-black px-4 py-2 mr-2 rounded font-bold`}
           isMenuOpen ? "left-0" : "-left-full"
         } fixed top-0 bottom-0 z-20 md:w-1/3 w-1/2 lg:hidden 
          ${theme === "dark" ? "bg-gray-800 text-white" : "bg-white text-black"}
-         px-8 pb-6 mt-24
+         px-8 pb-6 mt-16
          transition-transform duration-500 ease-in-out shadow-xl`}
       >
         <nav className="mt-8">
@@ -268,8 +270,8 @@ border-2 border-yellow-400 text-black px-4 py-2 mr-2 rounded font-bold`}
                 to="/"
                 className={`transition-colors duration-100 ${
                   theme === "light"
-                    ? "hover:text-2xl"
-                    : "hover:text-2xl hover:text-yellow-400"
+                    ? "hover:text-xl"
+                    : "hover:text-xl hover:text-yellow-400"
                 }`}
                 onClick={handleMenuClose}
               >
@@ -281,8 +283,8 @@ border-2 border-yellow-400 text-black px-4 py-2 mr-2 rounded font-bold`}
                 to="/cars"
                 className={`transition-colors duration-100 ${
                   theme === "light"
-                    ? "hover:text-2xl"
-                    : "hover:text-2xl hover:text-yellow-400"
+                    ? "hover:text-xl"
+                    : "hover:text-xl hover:text-yellow-400"
                 }`}
                 onClick={handleMenuClose}
               >
@@ -294,8 +296,8 @@ border-2 border-yellow-400 text-black px-4 py-2 mr-2 rounded font-bold`}
                 to="/about"
                 className={`transition-colors duration-100 ${
                   theme === "light"
-                    ? "hover:text-2xl"
-                    : "hover:text-2xl hover:text-yellow-400"
+                    ? "hover:text-xl"
+                    : "hover:text-xl hover:text-yellow-400"
                 }`}
                 onClick={handleMenuClose}
               >
@@ -307,8 +309,8 @@ border-2 border-yellow-400 text-black px-4 py-2 mr-2 rounded font-bold`}
                 to="/contact"
                 className={`transition-colors duration-100 ${
                   theme === "light"
-                    ? "hover:text-2xl"
-                    : "hover:text-2xl hover:text-yellow-400"
+                    ? "hover:text-xl"
+                    : "hover:text-xl hover:text-yellow-400"
                 }`}
                 onClick={handleMenuClose}
               >
@@ -320,7 +322,7 @@ border-2 border-yellow-400 text-black px-4 py-2 mr-2 rounded font-bold`}
         </nav>
        
           <div
-            className={`text-xl py-2 px-8 rounded hover:text-2xl  ${
+            className={`text-xl py-2 px-8 rounded hover:text-xl  ${
               theme === "dark" ? "hover:bg-gray-700" : "hover:bg-gray-300"
             }`}
             onClick={() => {
@@ -333,6 +335,8 @@ border-2 border-yellow-400 text-black px-4 py-2 mr-2 rounded font-bold`}
        
       </div>
     </header>
+    </div>
+    
   );
 };
 

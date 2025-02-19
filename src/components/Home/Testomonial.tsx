@@ -45,7 +45,7 @@ const Testimonials = () => {
 
   return (
     <div
-      className={`py-16 ${theme === "dark" ? "bg-gray-600" : "bg-gray-300"}`}
+      className={`py-20 ${theme === "dark" ? "bg-gray-900" : "bg-gray-200"}`}
     >
       <div className="container mx-auto text-center">
         <h2
@@ -80,7 +80,7 @@ const Testimonials = () => {
         >
           {testimonials.map((testimonial, index) => (
             <SwiperSlide key={index}>
-              <div className="mt-12 mb-12 h-[400px]">
+              <div className="mt-20 mb-12 h-[400px]">
                 <div
                   className={` ${
                     theme === "dark" ? "bg-gray-200" : "bg-white"

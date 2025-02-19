@@ -15,7 +15,7 @@ const Footer = () => {
   return (
     <footer
       className={`px-8  ${
-        theme === "dark" ? "bg-gray-700 text-white" : "bg-gray-300 text-black"
+        theme === "dark" ? "bg-gray-900 text-white" : "bg-gray-300 text-black"
       }`}
     >
     <div className={`border-b-2 pb-12 py-20 ${

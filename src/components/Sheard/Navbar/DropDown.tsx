@@ -15,7 +15,7 @@ const userRole = {
 const DropDown= () => {
   const theme = useAppSelector((state: RootState) => state.theme.theme);
   const user = useAppSelector((state: RootState) => state.auth.user);
-  const role = user?.role; // example role
+  const role = user?.role; 
   let sidebarItems: TNavbarItem[] = []; 
 
   switch (role) {

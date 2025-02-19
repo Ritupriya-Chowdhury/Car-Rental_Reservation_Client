@@ -19,7 +19,7 @@ const WhyChooseUs = () => {
   }, []);
   return (
     <div
-      className={`py-16 ${theme === "dark" ? "bg-gray-500" : "bg-gray-100"}`}
+      className={`py-16 ${theme === "dark" ? "bg-black" : "bg-white"}`}
     >
       <div className="grid lg:grid-cols-2 grid-cols-1 gap-3 md:mx-20">
         <div className="lg:px-0 px-8 ">
